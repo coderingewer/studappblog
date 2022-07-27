@@ -1,0 +1,213 @@
+@media only screen and (min-width: 1100px) {
+    .post-img {
+        max-width: 100%;
+        height: 100%;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+
+    }
+
+
+    .post-title {
+        font-size: 28px;
+        font-weight: 600;
+        text-align: left;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+
+    .post-card {
+        margin: auto;
+        width: 100%;
+        height: 50%;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    }
+
+    .popular-list {
+        display: flex;
+        margin-top: -110px;
+        margin-left: 100px;
+    }
+
+    .popular-detail {
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: left;
+
+    }
+
+    .popular-author  {
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 30px;
+
+    }
+
+    .popular-time {
+        font-size: 14px;
+        font-weight: 400;
+        margin-top: -15px;
+        
+        color: coral;
+    }
+
+    .popular-card {
+        width: 30%;
+        margin: 10px;
+        height: 200px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    }
+
+    .popular-title {
+        font-size: 18px;
+        font-weight: 600;
+        text-align: left;
+        max-height: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+
+    .popular-title h1 {
+        font-size: 18px;
+        font-weight: 600;
+        text-align: left;
+        max-height: 100px;
+    }
+
+    .post-author {
+        margin: auto;
+        font-size: 18px;
+        font-weight: 500;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .post-time {
+        font-size: 12px;
+        font-weight: 400;
+        text-align: left;
+        color: coral;
+        padding-left: 10px;
+    }
+
+    .card-text {
+        width: 100%;
+        height: 100%;
+        font-weight: 300;
+        text-align: left;
+        padding-bottom: 10px;
+        padding-left: 10px;
+
+    }
+
+    .card-body {
+        padding-left: 10px;
+        padding-top: 10px;
+        margin: auto;
+    }
+
+    .post-list {
+        margin-top: -300px;
+        width: 800px;
+        height: 100%;
+        display: flex;
+        margin-right: 200px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+
+@media only screen and (max-width: 1099px) {
+
+    .post-img {
+        max-width: 100%;
+        height: 100%;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+
+    }
+
+
+    .post-title {
+        font-size: 28px;
+        font-weight: 600;
+        text-align: left;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+
+    .post-card {
+        width: 100%;
+        height: auto;
+        background-color: rgb(235, 235, 235);
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .popular-card {
+        width: 30%;
+        background-color: rgb(235, 235, 235);
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    }
+
+    .post-author {
+        margin: auto;
+        font-size: 18px;
+        font-weight: 500;
+        text-align: left;
+        padding-left: 10px;
+    }
+    .popular-list {
+        display: none;
+    }
+
+    .post-time {
+        font-size: 12px;
+        font-weight: 400;
+        text-align: left;
+        color: coral;
+        padding-left: 10px;
+    }
+
+    .card-text {
+        width: 100%;
+        height: 100%;
+        font-weight: 300;
+        text-align: left;
+        padding-bottom: 10px;
+        padding-left: 10px;
+
+    }
+
+    .card-body {
+        padding-left: 10px;
+        padding-top: 10px;
+        margin: auto;
+    }
+
+    .post-list {
+        margin-top: 50px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
