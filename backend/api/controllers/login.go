@@ -13,6 +13,7 @@ import (
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		utils.ERROR(w, http.StatusUnprocessableEntity, err)

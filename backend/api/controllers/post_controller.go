@@ -15,6 +15,7 @@ import (
 )
 
 func CreatePost(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		utils.ERROR(w, http.StatusUnprocessableEntity, err)
@@ -32,19 +33,27 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 		utils.ERROR(w, http.StatusUnauthorized, errors.New(http.StatusText(http.StatusUnauthorized)))
 		return
 	}
+
 	post.UserID = uint(uid)
 	postCreated, err := post.Save()
 	if err != nil {
 		formattedError := utils.FormatError(err.Error())
 		utils.ERROR(w, http.StatusInternalServerError, formattedError)
 		return
-	}
+	} /*
+		tag := models.Tag{}
+		err = tag.CreatTag(post.ID)
+		if err != nil {
+			utils.ERROR(w, http.StatusUnprocessableEntity, err)
+			return
+		}*/
 
 	w.Header().Set("Location", fmt.Sprintf("%s%s%d", r.Host, r.URL, post.ID))
 	utils.JSON(w, http.StatusCreated, postCreated)
 }
 
 func GetPosts(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	post := models.Post{}
 	posts, err := post.FindAllPosts()
 	if err != nil {

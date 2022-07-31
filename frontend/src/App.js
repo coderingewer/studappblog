@@ -1,28 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
-import Navi from './bars/Navi';
-import { Container } from 'react-bootstrap';
-import PostList from './posts/PostList';
-import ListOfBestPosts from './carousel/ListOfBestPosts';
+import { Routes, Route } from "react-router-dom";
+
+import Home from './layouts/Home';
 import Dashboard from './layouts/Dashboard';
-import Explore from './layouts/Explore';
-import Popular from './posts/Popular';
+import ButtomNav from './bars/ButtomNav';
+import { BrowserRouter as Router } from "react-router-dom";
+import ExplorePage from './layouts/ExplorePage';
+import Navi from './bars/Navi';
+import Signup from './User/Register';
+import Login from './User/Login';
+import Edit from './posts/Edit';
+
 
 function App() {
   return (
-    <div className="App">
-      <Dashboard/>
-      <Popular/>
-      <Container>
-          <Navi />     
-          <Container>
-          <Explore/>
-          <PostList />
-            </Container>    
-         
+    < div>
+          <Dashboard />
+          <Navi />
+          <ButtomNav/>
 
-  
-      </Container>
+    <Router>
+
+      <Routes>
+      <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/explore' element={<ExplorePage />} />
+          <Route path='/register' element={<Signup />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/editor' element={<Edit />} />
+      </Routes>
+      <ButtomNav/>
+    </Router>
     </div>
   );
 }

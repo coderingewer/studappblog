@@ -1,13 +1,63 @@
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 1100px) {
   .studapp-blog {
     margin-top: 60px;
     height: 500px;
     width: 100%;
     background-color: 006A71;
     /* For browsers that do not support gradients */
-    background-image: linear-gradient(to right, #27d6a2, #03494e);
+    background-image: linear-gradient(to right top, #6667ab, #3d86ca, #00a4da, #00c0dc, #00d9d2, #17e6c4, #4cf2af, #7cfb94, #92fe7c, #aaff61, #c6ff40, #e3ff00);
     display: flex;
   }
+  .explore-page{
+    display: none;
+  }
+
+  .explore-items{
+    display: flow-root;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+  .side-explore {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 100%;
+    margin-left: 850px;
+    padding-top: 100px;
+  }
+  
+  .explore-card {
+    width: 30%;
+    margin: 20px;
+    height: 30px;
+    border-radius: 10px;
+  }
+  .explore-card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  
+  .explore-card h1 {
+    font-size: 18px;
+    text-align: left;
+    font-weight: 500;
+    padding: 5px;
+    margin-left: 10px;
+  }
+  
+  .explore-card p {
+    margin-top: -35px;
+    font-size: 16px;
+    opacity: 0.5;
+    text-align: right;
+    margin-right: 10px;
+  }
+  
 
   .slogan {
     display: block;
@@ -24,7 +74,7 @@
 
   .abstract {
     display: block;
-    font-size: 50px;
+    font-size: 40px;
     width: 400px;
     text-align: left;
     margin-block-start: 0.83em;
@@ -39,85 +89,56 @@
   }
 }
 
-@media only screen and (max-width: 993px) {
+@media only screen and (max-width: 1099px) {
   .studapp-blog {
     margin-top: 60px;
-    height: 500px;
+    height: 300px;
     width: 100%;
     background-color: 006A71;
-    /* For browsers that do not support gradients */
-    background-image: linear-gradient(to right, #27d6a2, #03494e);
+    background-image: linear-gradient(to right top, #6667ab, #3d86ca, #00a4da, #00c0dc, #00d9d2, #17e6c4, #4cf2af, #7cfb94, #92fe7c, #aaff61, #c6ff40, #e3ff00);
     display: flex;
   }
 
   .slogan {
     display: block;
-    font-size: 70px;
+    font-size: 50px;
     margin-block-start: 3em;
     margin-block-end: 0.83em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     margin-left: 10px;
     font-weight: 400;
+    overflow: hidden;
     text-align: left;
     color: rgb(0, 0, 0);
     font-family: "Times New Roman", Times, serif;
   }
+  .abstract{
+    display: none;
+    color: #03494e;
+  }
+  
 
-  .abstract {
-    display: block;
-    font-size: 35px;
-    width: 300px;
-    text-align: left;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    margin-left: 0px;
-    font-weight: 400;
-    margin-top: 200px;
-    color: yrgb(0, 0, 0);
-    margin: auto;
-    font-family: "Times New Roman", Times, serif;
+  .explore-page{
+    text-align: center;
+    margin-top: -50px;
+    margin-left: 100px;
+    margin-right: 100px;
+
+    height: 100%;
+  }
+  .side-explore{
+    display: none;
   }
 
-.explore {
-  display:none;
-
-}
-}
-
-.explore {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  padding: 5px;
-  width: 500px;
-  margin-left: 900px;
-  margin-top: 100px;
-  padding-top: 100px;
-
+  .explore-items{
+    display: flow-root;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
 }
 
-.explore-list {
-  list-style: none;
-  color: red;
-}
-
-a {
-  color: #e41f1f;
-}
-
-a:link {
-  color: #ff0000;
-  text-decoration: none;
-}
-
-avisited {
-  color: #0000ff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}

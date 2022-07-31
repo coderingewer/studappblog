@@ -21,14 +21,14 @@ type PostTag struct {
 func (tag *Tag) Prepare() {
 }
 
-func (tag *Tag) CreatTag(pid uint) (*Tag, error) {
+func (tag *Tag) CreatTag(pid uint) error {
 	post := Post{}
 	err := GetDB().Where("id = ?", pid).First(&post).Error
 	if err != nil {
-		return nil, err
+		return err
 	}
 	var text string
-	text = post.Title
+	text = post.Content
 	text = strings.ToLower(text)
 	stext := strings.Split(text, " ")
 
@@ -44,9 +44,9 @@ func (tag *Tag) CreatTag(pid uint) (*Tag, error) {
 				}
 			}
 		}
-		return tag, nil
+		return nil
 	}
-	return nil, nil
+	return nil
 }
 
 func (tag *Tag) GetTag(tagname string) bool {

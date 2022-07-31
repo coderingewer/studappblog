@@ -1,36 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { getPostsAsync, selectPost } from '../redux/postSlice';
 
 function Popular() {
+    const posts = useSelector(selectPost);
+    const dispacth = useDispatch();
+
+    useEffect (()=>{
+        dispacth(getPostsAsync());
+    },[dispacth])
     return (
         <div className='popular-list' >
-            <div className='popular-card' >
+            {
+               posts.map((post, index )=>index < 3 && (
+                <div key={post.ID} className='popular-card' >
                 <div className='popular-title'  >
-                    <h1 >Merdrtjkmdrtyhjmnbv xsdghnbvf srtghjnbv qwertyhbfdg  aqertghbvcdswert  srgthjmnvdryhjömb fdrtyujömnfrtyuk mngtyhjnvc srtghjndfg awerthjnvfg werthjnvdrtgh qw3e4rtyhgfdsw34rt q34yuhgfde4r5thhaba</h1>
-                </div>
+                    <h1 >{post.title}</h1></div>
                 <div className='popular-detail' >
-                    <p className='popular-author' >John Doe</p>
-                    <p className='popular-time' >27.07.2022</p>
+                    <p className='popular-author' >{post.sender.name}</p>
+                    <p className='popular-time' >{post.UpdatedAt}</p>
                 </div>
-            </div>
-            <div className='popular-card' >
-                <div className='popular-title'  >
-                    <h1 >Merdrtjkmdrtyhjmnbv xsdghnbvf srtghjnbv qwertyhbfdg  aqertghbvcdswert  srgthjmnvdryhjömb fdrtyujömnfrtyuk mngtyhjnvc srtghjndfg awerthjnvfg werthjnvdrtgh qw3e4rtyhgfdsw34rt q34yuhgfde4r5thhaba</h1>
-                </div>
-                <div className='popular-detail' >
-                    <p className='popular-author' >John Doe</p>
-                    <p className='popular-time' >27.07.2022</p>
-                </div>
-            </div>
-            <div className='popular-card' >
-                <div className='popular-title'  >
-                    <h1 >Merdrtjkmdrtyhjmnbv xsdghnbvf srtghjnbv qwertyhbfdg  aqertghbvcdswert  srgthjmnvdryhjömb fdrtyujömnfrtyuk mngtyhjnvc srtghjndfg awerthjnvfg werthjnvdrtgh qw3e4rtyhgfdsw34rt q34yuhgfde4r5thhaba</h1>
-                </div>
-                <div className='popular-detail' >
-                    <p className='popular-author' >John Doe</p>
-                    <p className='popular-time' >27.07.2022</p>
-
-                </div>
-            </div>
+            </div>))}
+           
 
         </div>
     )

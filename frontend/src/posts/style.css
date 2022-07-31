@@ -15,6 +15,9 @@
         padding-top: 10px;
         padding-left: 10px;
         padding-top: 10px;
+        overflow: hidden;
+        width: 500px;
+        height: 75px;
     }
 
     .post-card {
@@ -33,57 +36,11 @@
         margin-top: -110px;
         margin-left: 100px;
     }
-
-    .popular-detail {
-        margin-top: 20px;
-        margin-left: 10px;
-        margin-right: 10px;
-        text-align: left;
-
-    }
-
-    .popular-author  {
-        font-size: 18px;
-        font-weight: 500;
-        margin-top: 30px;
-
-    }
-
-    .popular-time {
-        font-size: 14px;
-        font-weight: 400;
-        margin-top: -15px;
-        
-        color: coral;
-    }
-
     .popular-card {
         width: 30%;
         margin: 10px;
-        height: 200px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
     }
-
-    .popular-title {
-        font-size: 18px;
-        font-weight: 600;
-        text-align: left;
-        max-height: 100px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding-top: 10px;
-        padding-left: 10px;
-        padding-top: 10px;
-    }
-
-    .popular-title h1 {
-        font-size: 18px;
-        font-weight: 600;
-        text-align: left;
-        max-height: 100px;
-    }
+    
 
     .post-author {
         margin: auto;
@@ -100,15 +57,18 @@
         color: coral;
         padding-left: 10px;
     }
+    .card-text{
+        overflow: hidden;
+        width: 500px;
+        height: 100px;
+    }
 
-    .card-text {
-        width: 100%;
-        height: 100%;
+    .card-text p {
+       
         font-weight: 300;
         text-align: left;
         padding-bottom: 10px;
         padding-left: 10px;
-
     }
 
     .card-body {
@@ -118,7 +78,7 @@
     }
 
     .post-list {
-        margin-top: -300px;
+        margin-top: -260px;
         width: 800px;
         height: 100%;
         display: flex;
@@ -136,32 +96,27 @@
         height: 100%;
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
-
     }
 
 
     .post-title {
-        font-size: 28px;
+        width: 500px;
+        font-size: 18px;
         font-weight: 600;
         text-align: left;
         padding-top: 10px;
         padding-left: 10px;
         padding-top: 10px;
+        overflow: hidden;
     }
 
     .post-card {
+        margin: auto;
         width: 100%;
-        height: auto;
-        background-color: rgb(235, 235, 235);
+        height: 40%;
         border-radius: 10px;
-        margin-bottom: 20px;
-    }
-
-    .popular-card {
-        width: 30%;
-        background-color: rgb(235, 235, 235);
-        border-radius: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        display: flex;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     }
@@ -173,6 +128,7 @@
         text-align: left;
         padding-left: 10px;
     }
+
     .popular-list {
         display: none;
     }
@@ -186,13 +142,13 @@
     }
 
     .card-text {
-        width: 100%;
-        height: 100%;
+        width: 500px;
+        max-height: 100px;
         font-weight: 300;
         text-align: left;
         padding-bottom: 10px;
         padding-left: 10px;
-
+        overflow: hidden;
     }
 
     .card-body {
@@ -209,5 +165,74 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
     }
+    .popular-card {
+        width: 100%;
+        margin-top:10px;
+    }
+
+}
+
+.choice-editor-list {
+    width: 70%;
+    margin: 100px;
+}
+
+.choice-editor-title {
+    font-size: 24px;
+    font-weight: 600;
+    border: gray solid 2px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+.popular-detail {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: left;
+
+}
+
+.popular-author {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 30px;
+
+}
+
+.popular-time {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: -15px;
+
+    color: coral;
+}
+
+.popular-card {
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.popular-title {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    max-height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.popular-title h1 {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    max-height: 100px;
 }

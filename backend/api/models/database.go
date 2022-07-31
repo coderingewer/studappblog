@@ -12,7 +12,7 @@ const (
 	port     = 5432
 	user     = "postgres"
 	password = "uyumak"
-	dbname   = "studapp"
+	dbname   = "postgres"
 )
 
 var db *gorm.DB
@@ -30,7 +30,7 @@ func init() {
 
 	db = conn
 	db.Debug().AutoMigrate(User{}, Post{},
-		Image{}, Tag{})
+		Image{}, Tag{}, PostTag{})
 
 	fmt.Println("DB Successfully connected!")
 

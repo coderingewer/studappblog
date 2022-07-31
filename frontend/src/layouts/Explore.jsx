@@ -1,40 +1,32 @@
 import React from 'react'
 import "./style.css"
+import { Form, Button, FormControl } from 'react-bootstrap'
 
 function Explore() {
   return (
     <div className='explore' >
-      <ul className='explore-list' >
 
-        <li>
-          <a href="">dolar</a>
-        </li>
-        <li>
-          <a href="">bitcoin</a>
+      <Form className="d-flex">
+        <Form.Control
+          type="search"
+          placeholder="Ara"
+          className="me-2"
+          aria-label="Search"
+        />
+      </Form>
+      <div className='explore-items' >
 
-        </li>
+        <div className='explore-card' >
+          <h1 >lorem</h1>
+        </div>
+        <div className='explore-card' >
+          <h1 >lorem</h1>
+        </div>
 
-        <li>        <a href="">döviz</a>
-        </li>
-
-        <li>
-          <a href="">bilim</a>
-        </li>
-
-        <li>
-          <a href="">astronomi</a>
-
-        </li>
-        <li>
-          <a href="">astronomi</a>
-
-        </li>
-        <li>
-          <a href="">astronomi</a>
-
-        </li>
-      </ul>
-
+        <div className='explore-card' >
+          <h1 >lorem</h1>
+        </div>
+      </div>
     </div>
   )
 }

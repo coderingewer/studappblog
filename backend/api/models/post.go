@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"fmt"
 	"html"
 	"strings"
 
@@ -10,11 +11,13 @@ import (
 
 type Post struct {
 	gorm.Model
-	Title    string `json:"title"`
-	Sender   User   `json:"sender"`
-	UserID   uint   `gorm:"not null" json:"userId"`
-	PhotosID int    `json:"photosId"`
-	Like     int    `json:"like"`
+	Title   string    `json:"title"`
+	Sender  User      `json:"sender"`
+	Content string    ` gorm:"not null" json:"content"`
+	UserID  uint      `gorm:"not null" json:"userId"`
+	PhotoID int       `json:"photoId"`
+	Like    int       `json:"like"`
+	PosTags []PostTag `gorm:"many2many:post_tags" json:"post_tags"`
 }
 
 func (p *Post) Prepare() {
@@ -22,6 +25,7 @@ func (p *Post) Prepare() {
 	p.Like = 0
 	p.Sender = User{}
 	p.Title = html.EscapeString(strings.TrimSpace(p.Title))
+	p.Content = html.EscapeString(strings.TrimSpace(p.Content))
 }
 
 func (p *Post) Save() (*Post, error) {
@@ -33,27 +37,28 @@ func (p *Post) Save() (*Post, error) {
 		err = db.Debug().Model(&User{}).Where("id = ?",
 			p.UserID).Take(&p.Sender).Error
 		if err != nil {
+			fmt.Println("hoh")
 			return &Post{}, err
 		}
 	}
 	return p, nil
 }
 
-func (p *Post) FindAllPosts() ([]Post, error) {
+func (p *Post) FindAllPosts() (*[]Post, error) {
 	posts := []Post{}
 	err := GetDB().Debug().Table("posts").Find(&posts).Error
 	if err != nil {
-		return []Post{}, err
+		return &[]Post{}, err
 	}
 	if len(posts) > 0 {
 		for i, _ := range posts {
-			err := GetDB().Debug().Table("users").Where("id=?", posts[i].UserID).Take(posts[i].Sender).Error
+			err := GetDB().Debug().Table("users").Where("id=?", &posts[i].UserID).Take(&posts[i].Sender).Error
 			if err != nil {
-				return []Post{}, err
+				return &[]Post{}, err
 			}
 		}
 	}
-	return posts, nil
+	return &posts, nil
 }
 
 func (p *Post) FindByID(pid uint) (*Post, error) {
