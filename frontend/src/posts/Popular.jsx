@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getPostsAsync, selectPost } from '../redux/postSlice';
+import { getPostsAsync, selectPost } from '../redux/post/postSlice';
 
 function Popular() {
     const posts = useSelector(selectPost);

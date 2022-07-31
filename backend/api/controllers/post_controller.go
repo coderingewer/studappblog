@@ -15,7 +15,6 @@ import (
 )
 
 func CreatePost(w http.ResponseWriter, r *http.Request) {
-	enableCors(&w)
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		utils.ERROR(w, http.StatusUnprocessableEntity, err)
@@ -53,7 +52,6 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetPosts(w http.ResponseWriter, r *http.Request) {
-	enableCors(&w)
 	post := models.Post{}
 	posts, err := post.FindAllPosts()
 	if err != nil {
@@ -155,24 +153,13 @@ func DeletePost(w http.ResponseWriter, r *http.Request) {
 		utils.ERROR(w, http.StatusUnauthorized, errors.New("Yetkisi yok"))
 		return
 	}
-	img := models.PostImage{}
 
-	_, err = img.Image.DeletePostImgByID(uint(pid))
-	if err != nil {
-		utils.ERROR(w, http.StatusBadRequest, err)
-		return
-	}
 	_, err = post.DeleteByID(uint(pid))
 	if err != nil {
 		utils.ERROR(w, http.StatusBadRequest, err)
 		return
 	}
 
-	_, err = img.Image.DeletePostImgByID(uint(pid))
-	if err != nil {
-		utils.ERROR(w, http.StatusBadRequest, err)
-		return
-	}
 	w.Header().Set("Entity", fmt.Sprintf("%d", pid))
 	utils.JSON(w, http.StatusNoContent, "")
 }

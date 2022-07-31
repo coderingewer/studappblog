@@ -21,6 +21,8 @@ type User struct {
 	UserRole string `gorm:"size:20;not null;" json:"userRole"`
 	Password string `gorm:"size:255;not null;" json:"password"`
 	Isvalid  bool   `gorm:"not null;" json:"isvalid"`
+	ImageID  uint   `json:"imageId"`
+	Image    Image  `json:"image"`
 }
 
 func Hash(password string) ([]byte, error) {
@@ -51,6 +53,7 @@ func (u *User) Prepare() {
 	u.UserRole = "BLOGGER"
 	u.DeletedAt = nil
 	u.Isvalid = false
+	u.Image.Url = "https://icdn.tgrthaber.com.tr/crop/850x500/static/haberler/2021_12/xbuyuk/nusret-hayatini-degistiren-3-donum-noktasini-acikladi-her-sabah-o-tabelaya-bakiy-1640427188.jpg"
 }
 
 func (u *User) Validate(action string) error {
@@ -90,6 +93,7 @@ func (u *User) SaveUser() (*User, error) {
 	if err != nil {
 		return &User{}, err
 	}
+	err = db.Debug().Table("images").Where("id=?", u.ImageID).Take(&u.Image).Error
 	return u, nil
 }
 
@@ -123,6 +127,7 @@ func (u *User) UpdateAUser(uid uint) (*User, error) {
 		map[string]interface{}{
 			"username":   u.Username,
 			"email":      u.Email,
+			"name":       u.Name,
 			"updated_at": time.Now(),
 		},
 	)

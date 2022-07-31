@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { getPostsAsync, selectPost } from '../redux/postSlice'
+import { getPostsAsync, selectPost } from '../redux/post/postSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import './style.css'
 import { useState } from 'react';

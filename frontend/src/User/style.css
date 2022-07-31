@@ -49,3 +49,11 @@
     color: red;
     text-align: center;
  }
+
+ .profile{
+    margin:100px;
+    width: 400px;
+    height: 600px;
+    display: flex;
+    background-color: aliceblue;
+ }

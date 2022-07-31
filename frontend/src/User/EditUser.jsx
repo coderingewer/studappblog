@@ -2,27 +2,27 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router";
 import Dashboard from "../layouts/Dashboard";
-import { registerAsync } from "../redux/user/userSlice";
+import { editUserAsync, registerAsync, selectUser } from "../redux/user/userSlice";
 import './style.css'
 
 import validationSchema from "./Validation";
 
-function Signup() {
-    const user = useSelector((state) => state.users) ;
-    const updated = useSelector((state) => state.users.isRegistered) ;
+function EditUser() {
+    const user = useSelector(selectUser) ;
+    const updated = useSelector((state) => state.users.isUpdated) ;
     const dispacth = useDispatch();
     const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
         useFormik({
             initialValues: {
-                email: "",
-                username: "",
-                name: "",
-                password: "",
-                passwordConfirm: "",
+                email: user.email,
+                username: user.username,
+                name: user.name,
+                password:  user.password,
+                passwordConfirm: user.password,
             },
-
             onSubmit: async (values) => {
-                await dispacth(registerAsync({
+                await dispacth(editUserAsync({
+                    id: user.ID,
                     email: values.email,
                     username: values.username,
                     name: values.name,
@@ -32,15 +32,13 @@ function Signup() {
             },
             validationSchema,
         });
-
     return (
         <div>
-
             <Dashboard />
-            { updated && <Navigate to = "/login" replace={false} />}
+            { updated && <Navigate to = "/profile" replace={false} />}
             <div className="signup-form"  >
                 <div className="signup-title" >
-                    <h1 >Kayıt ol</h1>
+                    <h1 >Düzenle</h1>
                 </div>
                 <div className="signup-inputs" >
 
@@ -79,33 +77,7 @@ function Signup() {
                         {errors.username && touched.username && (
                             <div className="error">{errors.username}</div>
                         )}
-
-
-                        <input
-                            placeholder="Şifre"
-                            name="password"
-                            value={values.password}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        {errors.password && touched.password && (
-                            <div className="error">{errors.password}</div>
-                        )}
-
-
-                        <input
-                            placeholder="Şifre tekrar"
-                            name="passwordConfirm"
-                            value={values.passwordConfirm}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        {errors.passwordConfirm && touched.passwordConfirm && (
-                            <div className="error">{errors.passwordConfirm}</div>
-                        )}
-
-
-                        <button type="submit">Kayıt Ol</button>
+                        <button type="submit">Kaydet</button>
                     </form>
                 </div>
             </div>
@@ -113,5 +85,5 @@ function Signup() {
     );
 }
 
-export default Signup;
+export default EditUser;
 

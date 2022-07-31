@@ -18,37 +18,10 @@ type Image struct {
 	gorm.Model
 	Url string `json:"url,omitempty" validate:"required"`
 }
-type ProfileImage struct {
-	gorm.Model
-	UserID  uint  `gorm:"primary_key column:user_id not null" json:"userId"`
-	ImageID uint  `gorm:"primary_key column:image_id not null" json:"imageId"`
-	Image   Image `json:"image"`
-}
-
-type PostImage struct {
-	gorm.Model
-	PostID  uint  `gorm:"primary_key column:post_id not null" json:"userId"`
-	ImageID uint  `gorm:"primary_key column:image_id not null" json:"imageId"`
-	Image   Image `json:"image"`
-}
 
 func (img *Image) Prepare() {
 	img.ID = 0
 	img.Url = html.EscapeString(strings.TrimSpace(img.Url))
-}
-
-func (img *ProfileImage) Prepare() {
-	img.ID = 0
-	img.ImageID = 0
-	img.Image = Image{}
-	img.UserID = 0
-}
-
-func (img *PostImage) Prepare() {
-	img.ID = 0
-	img.ImageID = 0
-	img.Image = Image{}
-	img.PostID = 0
 }
 
 var (
@@ -88,22 +61,6 @@ func (img *Image) SaveImage() (*Image, error) {
 	return img, nil
 }
 
-func (img *ProfileImage) SaveProfileImage() (*ProfileImage, error) {
-	err := db.Debug().Create(img).Error
-	if err != nil {
-		return &ProfileImage{}, err
-	}
-	return img, nil
-}
-
-func (img *PostImage) SavePostImage() (*PostImage, error) {
-	err := db.Debug().Create(img).Error
-	if err != nil {
-		return &PostImage{}, err
-	}
-	return img, nil
-}
-
 func (img *Image) DeleteByID(imgid uint) (int64, error) {
 	err := db.Debug().Table("images").Where("id = ? ", imgid).Take(&img).Delete(Image{})
 	if err.Error != nil {
@@ -128,18 +85,11 @@ func (img *Image) UpdateImageByID(imgid uint) (*Image, error) {
 	return img, nil
 }
 
-func (img *ProfileImage) DeleteProfileImgByUserID(uid uint) (int64, error) {
-	err := db.Debug().Table("profile_images").Where("user_id = ? ", uid).Take(&img).Delete(Image{})
-	if err.Error != nil {
-		return 0, err.Error
+func (img *Image) FindAll() ([]Image, error) {
+	var images []Image
+	err := db.Debug().Table("images").Find(&images).Error
+	if err != nil {
+		return nil, err
 	}
-	return db.RowsAffected, nil
-}
-
-func (img *Image) DeletePostImgByID(imgid uint) (int64, error) {
-	err := db.Debug().Table("post_images").Where("post_id = ? ", imgid).Take(&img).Delete(Image{})
-	if err.Error != nil {
-		return 0, err.Error
-	}
-	return db.RowsAffected, nil
+	return images, nil
 }

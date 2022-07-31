@@ -31,6 +31,14 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		utils.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}
+	usrImg := models.Image{}
+	img, err := usrImg.SaveImage()
+	if err != nil {
+		utils.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
+	}
+	user.ImageID = img.ID
+
 	/*
 		token, err := auth.CreateToken(user.ID)
 		if err != nil {
@@ -48,13 +56,21 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 				return
 			}*/
 	userCreated, err := user.SaveUser()
+	responseUsr := models.ResponseUser{}
+
+	responseUsr.Email = userCreated.Email
+	responseUsr.Name = userCreated.Name
+	responseUsr.ID = userCreated.ID
+	responseUsr.Username = userCreated.Username
+	responseUsr.UserImage = userCreated.Image
+
 	if err != nil {
 		formatedError := utils.FormatError(err.Error())
 		utils.ERROR(w, http.StatusUnprocessableEntity, formatedError)
 		return
 	}
 	w.Header().Set("Location", fmt.Sprintf("%s%s%d", r.Host, r.RequestURI, userCreated.ID))
-	utils.JSON(w, http.StatusCreated, userCreated)
+	utils.JSON(w, http.StatusCreated, responseUsr)
 
 }
 
@@ -111,10 +127,12 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	tokenID, err := auth.ExtractTokenID(r)
 	if err != nil {
 		utils.ERROR(w, http.StatusUnauthorized, errors.New("Yetkilendirilmemiş"))
+		fmt.Println("hao2")
 	}
 
 	if tokenID != uint(uid) {
 		utils.ERROR(w, http.StatusUnauthorized, errors.New(http.StatusText(http.StatusUnauthorized)))
+		fmt.Println("hao1")
 	}
 	if err != nil {
 		utils.ERROR(w, http.StatusBadRequest, err)
@@ -134,7 +152,6 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	user.Prepare()
-	err = user.Validate("")
 	if err != nil {
 		utils.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
