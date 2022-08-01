@@ -19,25 +19,23 @@ function Edit() {
     setContent(editorState);
   }
   const dispatch = useDispatch()
+
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
         title: "",
         content: "",
       },
+
       onSubmit: async (e) => {
         await dispatch(addPostsAsync({
-          userId: userId, photoId: 1, title:
-            values.title,
+          userId: userId,
+            title:values.title,
           content: values.content
         }));
-
-        console.log(values)
       }
 
     });
-
-
 
   return (
     <div className='edit-form'>

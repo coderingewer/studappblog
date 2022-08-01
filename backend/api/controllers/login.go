@@ -24,7 +24,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		utils.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}
-
 	user.Prepare()
 	err = user.Validate("login")
 	if err != nil {
@@ -40,14 +39,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 	usr := models.ResponseUser{}
 	usr.ID = user.ID
-	usr.Email = user.Email
 	usr.Token = token
-	usr.Name = user.Name
-	usr.UserRole = user.UserRole
-	usr.Username = user.Username
-	usr.CreatedAt = user.CreatedAt
-	usr.UpdatedAt = user.UpdatedAt
-	user.Username = token
 	(w).Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	utils.JSON(w, http.StatusOK, usr)
 }
@@ -64,6 +56,7 @@ func SignIn(email, password string) (string, models.User, error) {
 	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
 		return "", user, err
 	}
+	err = models.GetDB().Debug().Table("images").Where("id=?", user.ImageID).Take(&user.Image).Error
 	token, err := auth.CreateToken(user.ID)
 	if err != nil {
 		return "", user, err

@@ -15,7 +15,8 @@ type Post struct {
 	Sender  User      `json:"sender"`
 	Content string    ` gorm:"not null" json:"content"`
 	UserID  uint      `gorm:"not null" json:"userId"`
-	PhotoID int       `json:"photoId"`
+	PhotoID uint      `json:"photoId"`
+	Image   Image     `json:"image"`
 	Like    int       `json:"like"`
 	PosTags []PostTag `gorm:"many2many:post_tags" json:"post_tags"`
 }
@@ -53,6 +54,10 @@ func (p *Post) FindAllPosts() (*[]Post, error) {
 	if len(posts) > 0 {
 		for i, _ := range posts {
 			err := GetDB().Debug().Table("users").Where("id=?", &posts[i].UserID).Take(&posts[i].Sender).Error
+			if err != nil {
+				return &[]Post{}, err
+			}
+			err = GetDB().Debug().Table("images").Where("id=?", &posts[i].PhotoID).Take(&posts[i].Image).Error
 			if err != nil {
 				return &[]Post{}, err
 			}
@@ -111,4 +116,20 @@ func (p *Post) FinBYUserID(uid uint) ([]Post, error) {
 		}
 	}
 	return posts, nil
+}
+
+func (p *Post) UpdatePostImage(pid uint) (*Post, error) {
+	db := GetDB().Debug().Table("posts").Where("id=?", pid).UpdateColumns(
+		map[string]interface{}{
+			"photo_id": p.PhotoID,
+		},
+	)
+	if db.Error != nil {
+		return &Post{}, db.Error
+	}
+	err := GetDB().Debug().Table("posts").Where("id=?", pid).Take(&p).Error
+	if err != nil {
+		return &Post{}, err
+	}
+	return p, nil
 }

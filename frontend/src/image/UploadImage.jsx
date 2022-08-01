@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { uploadImageAsync } from './redux/Image/imageSlice';
+import { uploadImageAsync } from '../redux/Image/imageSlice';
 
 function UploadImage() {
     const dispact = useDispatch();

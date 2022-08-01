@@ -15,6 +15,8 @@ function Profile() {
     console.log(user)
   return (
     <div className='profile' >
+      <div>
+      </div>
         <div>
           <h1>{user.username}</h1>
         </div>

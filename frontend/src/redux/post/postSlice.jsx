@@ -13,11 +13,20 @@ export const addPostsAsync = createAsyncThunk("posts/addPostsAsync", async (data
     return res.data;
 })
 
+export const uplaodPostImgAsync = createAsyncThunk("posts/uploadPstImgAsync", async (data) => {
+    const res = await axios.post("http://localhost:8000/api/posts/uploadimg/" + data.id, data,{
+    headers: {
+        'Authorization': `token ${localStorage.getItem("token")}`
+      }})
+    return res.data;
+})
+
 
 export const postSlice = createSlice({
     name: "posts",
     initialState: {
         items: [],
+        currentPostId :{},
     },
     reducers: {
           },
@@ -27,7 +36,9 @@ export const postSlice = createSlice({
         },
 
         [addPostsAsync.fulfilled]: (state, action) => {
+            localStorage.setItem("currentId", action.payload.photoId)
             state.items.push(action.payload);
+            console.log(action.payload)
         },
     }
 

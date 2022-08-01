@@ -9,7 +9,7 @@ export const uploadImageAsync = createAsyncThunk("images/uploadImageAsync/", asy
 })
 
 export const updateImageAsync = createAsyncThunk("images/updateImageAsync/", async (data) => {
-    const res = await axios.post("http://localhost:8000/api/images/update/" + data.id, data);
+    const res = await axios.post("http://localhost:8000/api/images/update/" + data.id, data.data);
     return res.data;
 })
 

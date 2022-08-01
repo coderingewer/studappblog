@@ -15,7 +15,7 @@ export const registerAsync = createAsyncThunk("users/registerAsnyc/", async (dat
 })
 
 export const getUserAsync = createAsyncThunk("users/getUserAsnyc/", async (id) => {
-    const res = await axios.get("http://localhost:8000/api/users/update/" + id);
+    const res = await axios.get("http://localhost:8000/api/users/getById/" + id);
     return res.data;
 })
 
@@ -26,6 +26,7 @@ export const editUserAsync = createAsyncThunk("users/editUserAsnyc/", async ( da
           }})
     return res.data;
 })
+
 
 export const userSlice = createSlice({
     name: "users",
@@ -81,13 +82,11 @@ export const userSlice = createSlice({
             state.isLoading = false;
         },
         [editUserAsync.fulfilled]:(state, action)=>{
-            setAuthorizationToken(localStorage.getItem("token"));
-            localStorage.setItem("user_data", JSON.stringify(action.payload));
             state.isUpdated = true;
+            localStorage.setItem("user_data", JSON.stringify(action.payload) )
         },
         [getUserAsync.fulfilled]:(state, action) =>{
-            const {id, email, username, name} = action.payload;
-            const item = state.items.find(item=> item.id === id);
+            localStorage.setItem('user_data', JSON.stringify(action.payload));
         },
     },
 })

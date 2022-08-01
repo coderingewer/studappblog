@@ -12,7 +12,9 @@ import Edit from './posts/Edit';
 import AdminPanel from './admin/AdminPanel';
 import Profile from './User/Profile';
 import EditUser from "./User/EditUser"
-import UploadImage from './UploadImage';
+import UploadImage from './image/UploadImage';
+import UpdateUserAvatar from './User/UpdateUserAvatar';
+import UploadPostImg from './posts/UploadPostImg';
 
 
 function App() {
@@ -32,7 +34,8 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/editUser' element={<EditUser />} />
           <Route path='/uploadImage' element={<UploadImage />} />
-
+          <Route path='/useravatar' element={<UpdateUserAvatar />} />
+          <Route path='/postimg' element={<UploadPostImg />} />
       </Routes>
       <ButtomNav/>
     </Router>

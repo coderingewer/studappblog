@@ -30,7 +30,7 @@ function PostList() {
                         </div>
                     </div>
                     <div>
-                        <img className='post-img' src="https://icdn.tgrthaber.com.tr/crop/850x500/static/haberler/2021_12/xbuyuk/nusret-hayatini-degistiren-3-donum-noktasini-acikladi-her-sabah-o-tabelaya-bakiy-1640427188.jpg" alt="" />
+                        <img className='post-img' src={post.image.url} alt="" />
                     </div>
                 </div>
                 ))

@@ -1,48 +1,52 @@
 import { useFormik } from "formik";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router";
+import UpdateImage from "../image/UpdateImage";
 import Dashboard from "../layouts/Dashboard";
-import { editUserAsync, registerAsync, selectUser } from "../redux/user/userSlice";
+import { editUserAsync, getUserAsync, selectUser } from "../redux/user/userSlice";
 import './style.css'
+import UpdateUserAvatar from "./UpdateUserAvatar";
 
 import validationSchema from "./Validation";
 
 function EditUser() {
-    const user = useSelector(selectUser) ;
-    const updated = useSelector((state) => state.users.isUpdated) ;
+    const usr = JSON.parse(localStorage.getItem("user_data"));
+    const user = useSelector(selectUser);
     const dispacth = useDispatch();
-    const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
+    const {handleChange, handleBlur, values, errors, touched } =
         useFormik({
             initialValues: {
                 email: user.email,
                 username: user.username,
                 name: user.name,
-                password:  user.password,
-                passwordConfirm: user.password,
-            },
-            onSubmit: async (values) => {
-                await dispacth(editUserAsync({
-                    id: user.ID,
-                    email: values.email,
-                    username: values.username,
-                    name: values.name,
-                    password: values.password
-                }
-                ))
             },
             validationSchema,
         });
+
+        useEffect(()=>{
+            dispacth(getUserAsync(usr.ID))
+        }, [dispacth])
+
+    const submitUser = (e) => {
+        e.preventDefault()
+        dispacth(editUserAsync({
+            id: usr.ID,
+            email: values.email,
+            username: values.username,
+            name: values.name,
+        }
+        ))  
+    }
     return (
         <div>
             <Dashboard />
-            { updated && <Navigate to = "/profile" replace={false} />}
             <div className="signup-form"  >
                 <div className="signup-title" >
                     <h1 >Düzenle</h1>
                 </div>
                 <div className="signup-inputs" >
 
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={submitUser}>
                         <input
                             placeholder="Email"
                             name="email"
@@ -77,7 +81,7 @@ function EditUser() {
                         {errors.username && touched.username && (
                             <div className="error">{errors.username}</div>
                         )}
-                        <button type="submit">Kaydet</button>
+                        <button onSubmit={submitUser} type="submit">Kaydet</button>
                     </form>
                 </div>
             </div>

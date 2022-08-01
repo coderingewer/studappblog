@@ -32,6 +32,13 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 		utils.ERROR(w, http.StatusUnauthorized, errors.New(http.StatusText(http.StatusUnauthorized)))
 		return
 	}
+	photo := models.Image{}
+	img, err := photo.SaveImage()
+	if err != nil {
+		utils.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
+	}
+	post.PhotoID = uint(img.ID)
 
 	post.UserID = uint(uid)
 	postCreated, err := post.Save()
@@ -178,4 +185,40 @@ func GetPostsByUserID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	utils.JSON(w, http.StatusOK, posts)
+}
+
+func UploadPostImg(w http.ResponseWriter, r *http.Request) {
+
+	img := models.Image{}
+	formFile, _, err := r.FormFile("file")
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	uploadUrl, err := models.NewMediaUpload().FileUpload(models.File{File: formFile})
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	img.Url = uploadUrl
+	image, err := img.SaveImage()
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	vars := mux.Vars(r)
+	post := models.Post{}
+	pid, err := strconv.ParseUint(vars["id"], 10, 64)
+	if err != nil {
+		utils.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
+	}
+	post.ID = uint(pid)
+	post.PhotoID = uint(image.ID)
+	pst, err := post.UpdatePostImage(uint(pid))
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+	}
+
+	utils.JSON(w, http.StatusOK, pst)
 }
