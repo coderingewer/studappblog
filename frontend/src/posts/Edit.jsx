@@ -40,7 +40,6 @@ function Edit() {
   return (
     <div className='edit-form'>
       <form onSubmit={handleSubmit} >
-        <label htmlFor="title">Title</label>
         
         <input
           placeholder="Başlık"
@@ -50,15 +49,14 @@ function Edit() {
           onBlur={handleBlur}
         />
 
-        <label htmlFor="title">Content</label>
-        <input
+        <textarea
           placeholder="İçerik"
           name="content"
           value={values.content}
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        <button type='submit' >Submit</button>
+        <button disabled = {values.content && values.title ? false : true} type='submit' >Submit</button>
       </form>
     </div>
   )

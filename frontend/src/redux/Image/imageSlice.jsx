@@ -41,6 +41,7 @@ export const imageSlice = createSlice({
         },
         [updateImageAsync.fulfilled]: (state, action) => {
             state.isLoading = false;
+            state.isUpdated = true;
             state.items.push(action.payload)
         },
         

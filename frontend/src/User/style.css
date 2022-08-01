@@ -9,12 +9,70 @@
     box-shadow: 0 0 20px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.24);
 }
 
-.signup-title{
-    width: 100%;
-    height: 100%;
-    text-align: center;
+
+.user-card-body{
+    border-radius: 10px;
+    height: 200px;
+    width: 100% ;  
+
+}
+.user-card-body img {
+    border-radius: 100%;
+    width: 100px;
+    margin-left: 40%;
+    height: 100px;
 }
 
+#dropdown-basic-button{
+    margin-left: 90%;
+    align-items: center;
+}
+.user-posts{
+    width: 80%;
+    height: 500px;
+    margin-left: 10%;
+    overflow: scroll;
+    margin-top: -70px;
+}
+
+#user-posts-title{
+    height: 50px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+}
+#sign-out-btn{
+    color: whitesmoke;
+    background-color: rgb(201, 90, 90);
+    font-weight: 600;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 85%;
+    width: 10%;
+}
+.user-card-body h1 {
+    margin-bottom: 100px;
+    width: 90%;
+    font-size: 24px;
+    height: 100px;
+    text-align: center;
+}
+.user-card-body p {
+    width: 90%;
+    margin-top: -170px;
+    height: 100px;
+    text-align: center;
+}
+.signout-form{
+    background-color: #ccc;
+    height: 50px;
+    width: 60px;
+    margin-left: 90%;
+}
+.signout-form button{
+    height: 40px;
+    font-size: small;
+}
 .signup-inputs{
     margin-top: 20px;
     background-color: aliceblue;
@@ -51,9 +109,15 @@
  }
 
  .profile{
-    margin:100px;
-    width: 400px;
-    height: 600px;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 100px;
+    width: 70%;
+    padding-bottom: 100%;
     display: flex;
-    background-color: aliceblue;
+    background-color: rgb(241, 241, 241);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    position: fixed;
+    margin-bottom: 300px;
  }

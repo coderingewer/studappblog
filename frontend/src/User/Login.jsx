@@ -25,9 +25,8 @@ function Login() {
     const dispatch = useDispatch()
 
 
-    const submitUser = (e) => {
-        e.preventDefault()
-        dispatch(loginAsync({ email: values.email, password: values.password }))
+    const submitUser = async (e) => {
+       await dispatch(loginAsync({ email: values.email, password: values.password }))
         console.log(userSlice.isLoggined)
     }
     return (

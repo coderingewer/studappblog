@@ -47,7 +47,7 @@ func (p *Post) Save() (*Post, error) {
 
 func (p *Post) FindAllPosts() (*[]Post, error) {
 	posts := []Post{}
-	err := GetDB().Debug().Table("posts").Find(&posts).Error
+	err := GetDB().Debug().Table("posts").Order("created_at desc").Find(&posts).Error
 	if err != nil {
 		return &[]Post{}, err
 	}
@@ -74,13 +74,22 @@ func (p *Post) FindByID(pid uint) (*Post, error) {
 	if gorm.IsRecordNotFoundError(err) {
 		return &Post{}, errors.New("Gönderi bulunamadı")
 	}
+	err = GetDB().Debug().Table("users").Where("id=?", &p.UserID).Take(&p.Sender).Error
+	if err != nil {
+		return &Post{}, err
+	}
+	err = GetDB().Debug().Table("images").Where("id=?", &p.PhotoID).Take(&p.Image).Error
+	if err != nil {
+		return &Post{}, err
+	}
 	return p, nil
 }
 
 func (p *Post) UpdatePost(pid uint) (*Post, error) {
 	db := GetDB().Debug().Table("posts").Where("id=?", pid).UpdateColumns(
 		map[string]interface{}{
-			"title": p.Title,
+			"title":   p.Title,
+			"content": p.Content,
 		},
 	)
 	if db.Error != nil {
@@ -109,7 +118,7 @@ func (p *Post) FinBYUserID(uid uint) ([]Post, error) {
 	}
 	if len(posts) > 0 {
 		for i, _ := range posts {
-			err := GetDB().Debug().Table("users").Where("id=?", posts[i].UserID).Take(posts[i].Sender).Error
+			err := GetDB().Debug().Table("users").Where("id=?", &posts[i].UserID).Take(&posts[i].Sender).Error
 			if err != nil {
 				return []Post{}, err
 			}

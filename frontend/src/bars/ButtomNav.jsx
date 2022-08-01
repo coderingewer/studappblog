@@ -4,6 +4,7 @@ import './style.css'
 import { AiFillHome, AiOutlineUser } from 'react-icons/ai'
 import { BsSearch } from 'react-icons/bs'
 function ButtomNav() {
+    const user = JSON.parse(localStorage.getItem("user_data"))
     return (
         <div className='bottom-nav' >
 
@@ -27,13 +28,14 @@ function ButtomNav() {
                                 <AiFillHome />
                             </div>
                         </Nav.Link>
+                        {user &&
                     <Nav.Item>
-                        <Nav.Link  href='/explore'>
+                        <Nav.Link  href='/profile'>
                             <div className='nav-icon'>
                                 <AiOutlineUser />
                             </div>
                         </Nav.Link>
-                    </Nav.Item>
+                    </Nav.Item>}
                 </Nav>
             </Navbar>
         </div>

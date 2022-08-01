@@ -13,3 +13,7 @@ type ResponseUser struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	UserRole  string    `json:"user_role"`
 }
+type UpdatePost struct {
+	Title   string `json:"title"`
+	Content string `json:"content"`
+}

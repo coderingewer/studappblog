@@ -39,6 +39,7 @@ export const userSlice = createSlice({
         regiterError : null,
         isUpdated:false,
         isRegistered : false,
+        isSignOut : false,
     },
 
     reducers: {
@@ -46,8 +47,7 @@ export const userSlice = createSlice({
             localStorage.removeItem("token");
             localStorage.removeItem("logined");
             localStorage.removeItem("user_data");
-          state.CurrentUser = {};
-           state.isLoggined = false;
+           state.isSignOut = true;
         }
     },
 

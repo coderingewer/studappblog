@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router";
 import UpdateImage from "../image/UpdateImage";
 import Dashboard from "../layouts/Dashboard";
 import { editUserAsync, getUserAsync, selectUser } from "../redux/user/userSlice";
@@ -12,6 +13,7 @@ import validationSchema from "./Validation";
 function EditUser() {
     const usr = JSON.parse(localStorage.getItem("user_data"));
     const user = useSelector(selectUser);
+    const userSlice = useSelector(state => state.users) 
     const dispacth = useDispatch();
     const {handleChange, handleBlur, values, errors, touched } =
         useFormik({
@@ -82,6 +84,7 @@ function EditUser() {
                             <div className="error">{errors.username}</div>
                         )}
                         <button onSubmit={submitUser} type="submit">Kaydet</button>
+                        {userSlice.isUpdated && <Navigate to="/profile" replace = {true} />}
                     </form>
                 </div>
             </div>

@@ -1,42 +1,20 @@
 import React from 'react'
 import "./style.css"
-import {Navbar , Container, Nav, Button } from "react-bootstrap"
-import { AiFillHome, AiOutlineUser } from 'react-icons/ai'
-import { BsSearch } from 'react-icons/bs'
+import Edit from '../posts/Edit'
+import { useSelector } from 'react-redux'
+import { selectPost } from '../redux/post/postSlice'
+import UploadPostImg from '../posts/UploadPostImg'
 
 
 function AdminPanel() {
-  return (
-      <Navbar bg="light" expand="lg" fixed='bottom'>
-      <Container fluid>
-        <Navbar.Brand href="/home">StudApp Blog Admin</Navbar.Brand>
-        <Nav justify variant="tabs"  defaultActiveKey="/home">
-                    <Nav.Item>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link href='/adminpanel'>
+    const postslc = useSelector(state => state.posts)
+    return (
+        <div>
+            <div>{postslc.posted ? <UploadPostImg /> : <Edit />}
 
-                            <div className='nav-icon'>
-                                <BsSearch />
-                            </div></Nav.Link>
-                    </Nav.Item>
-                        <Nav.Link href="/adminpanel">
-                            <div className='nav-icon'>
-                                <AiFillHome />
-                            </div>
-                        </Nav.Link>
-                    <Nav.Item>
-                        <Nav.Link  href='/adminpanel'>
-                            <div className='nav-icon'>
-                                <AiOutlineUser />
-                            </div>
-                        </Nav.Link>
-                    </Nav.Item>
-                </Nav>
-
-      </Container>
-    </Navbar>
-  )
+            </div>
+        </div>
+    )
 }
 
 export default AdminPanel

@@ -1,6 +1,6 @@
 @media only screen and (min-width: 1100px) {
     .post-img {
-        max-width: 100%;
+        width: 300px;
         height: 100%;
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
@@ -23,10 +23,11 @@
     .post-card {
         margin: auto;
         width: 100%;
-        height: 50%;
+        height: 250px;
         border-radius: 10px;
         margin-bottom: 10px;
         display: flex;
+        overflow: hidden;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     }
@@ -36,11 +37,12 @@
         margin-top: -110px;
         margin-left: 100px;
     }
+
     .popular-card {
         width: 30%;
         margin: 10px;
     }
-    
+
 
     .post-author {
         margin: auto;
@@ -57,14 +59,15 @@
         color: coral;
         padding-left: 10px;
     }
-    .card-text{
+
+    .card-text {
         overflow: hidden;
         width: 500px;
         height: 100px;
     }
 
     .card-text p {
-       
+
         font-weight: 300;
         text-align: left;
         padding-bottom: 10px;
@@ -92,7 +95,7 @@
 @media only screen and (max-width: 1099px) {
 
     .post-img {
-        max-width: 100%;
+        width: 200px;
         height: 100%;
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
@@ -113,10 +116,11 @@
     .post-card {
         margin: auto;
         width: 100%;
-        height: 40%;
+        height: 200px;
         border-radius: 10px;
         margin-bottom: 10px;
         display: flex;
+        overflow: hidden;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     }
@@ -154,6 +158,7 @@
     .card-body {
         padding-left: 10px;
         padding-top: 10px;
+        width: 50%;
         margin: auto;
     }
 
@@ -165,11 +170,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding-bottom: 100px;
 
     }
+
     .popular-card {
         width: 100%;
-        margin-top:10px;
+        margin-top: 10px;
     }
 
 }
@@ -239,8 +246,55 @@
 
 .edit-form {
     margin: 200px;
-
-    
-
+    width: 400px;
+    height: 100%;
+    display: flex;
+    border-radius: 10px;
+    width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
+
+.edit-form input {
+    margin: 20px;
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.edit-form button {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 30%;
+    color: azure;
+    font-size: 18px;
+    font-weight: 700;
+    background-color: rgb(23, 160, 46);
+}
+
+.edit-form textarea {
+    border-radius: 10px;
+    width: 100%;
+    height: 400px;
+    margin: 20px;
+    text-align: center;
+}
+
+.usr-post-card {
+    margin: auto;
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    border: solid rgb(211, 211, 211) 2px;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+  }

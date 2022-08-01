@@ -102,7 +102,7 @@ func UpdatePost(w http.ResponseWriter, r *http.Request) {
 		utils.ERROR(w, http.StatusNotFound, err)
 		return
 	}
-
+	post.UserID = uint(uid)
 	if uid != post.UserID {
 		utils.ERROR(w, http.StatusUnauthorized, errors.New("Yetkisi yok"))
 		return
@@ -110,15 +110,14 @@ func UpdatePost(w http.ResponseWriter, r *http.Request) {
 
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
+		fmt.Println("pufw")
 		utils.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}
+
 	postUpdate := models.Post{}
-	err = json.Unmarshal(body, &postUpdate)
-	if err != nil {
-		utils.ERROR(w, http.StatusUnprocessableEntity, err)
-		return
-	}
+	json.Unmarshal(body, &postUpdate)
+
 	postUpdate.UserID = post.UserID
 	if uid != postUpdate.UserID {
 		utils.ERROR(w, http.StatusUnauthorized, errors.New("Yetkisi yok"))
