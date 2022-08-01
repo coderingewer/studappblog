@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 
 import Home from './layouts/Home';
 import ButtomNav from './bars/ButtomNav';
@@ -15,16 +15,20 @@ import EditUser from "./User/EditUser"
 import UploadImage from './image/UploadImage';
 import UpdateUserAvatar from './User/UpdateUserAvatar';
 import UploadPostImg from './posts/UploadPostImg';
+import UpdatePost from './posts/UpdatePost';
+import DeletePost from './posts/DeletePost';
+import UserPosts from "./posts/UserPosts"
+import Post from './posts/Post';
 
 
 function App() {
   return (
-    < div>
-    <Router>
-            <Navi />
-            <ButtomNav />
-      <Routes>
-      <Route path='/' element={<Home />} />
+    < div  >
+      <Router>
+        <Navi />
+        <ButtomNav />
+        <Routes>
+          <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />
           <Route path='/explore' element={<ExplorePage />} />
           <Route path='/register' element={<Signup />} />
@@ -36,9 +40,13 @@ function App() {
           <Route path='/uploadImage' element={<UploadImage />} />
           <Route path='/useravatar' element={<UpdateUserAvatar />} />
           <Route path='/postimg' element={<UploadPostImg />} />
-      </Routes>
-      <ButtomNav/>
-    </Router>
+          <Route path='/userPosts/:userId' element={<UserPosts />} />
+          <Route path='/updatePost/:postId' element={<UpdatePost />} />
+          <Route path='/deletepost/:postId' element={<DeletePost />} />
+          <Route path='/post/:postId' element={<Post />} />
+        </Routes>
+        <ButtomNav />
+      </Router>
     </div>
   );
 }
