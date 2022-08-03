@@ -1,25 +1,47 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
+import "./style.css"
 import { getPostAsync, selectPost } from '../redux/post/postSlice'
+import { CgMoreVertical } from 'react-icons/cg'
+import DeletePost from './DeletePost'
 
 function Post() {
-    const post = useSelector(state =>state.posts.currentPost)
+    const currentUser = useSelector((state) => state.users.CurrentUser);
+    const userId = currentUser.id;
+    const posts = useSelector(state => state.posts.items)
     const { postId } = useParams()
     const dispact = useDispatch()
-    useEffect( ()=>{
-        new Promise(r => setTimeout(r, 20));
-         dispact(getPostAsync({postId}))
+    useEffect(() => {
+        dispact(getPostAsync({ postId }))
     }
-    ,[dispact])
+        , [dispact])
+    console.log(posts)
     return (
-        <div>
-            <br /><br /><br /><br /><br /><br />
-                    <div key={post.id} >
-                        <img className='post-img' src={post.image.url} alt="" />
-                        <h1>{post.title}</h1>
-                        <p>{post.content}</p>
-                    </div>
+        <div className='post' >
+            <div className='post-body' >
+                {
+                    posts.map((post) => (
+                        <div key={post.ID} >
+                            {post.sender.ID === userId &&
+                                <div className='card-more'>
+                                    <a className='link' href={"/updatepost/" + post.ID}>
+                                        <CgMoreVertical className='editbtn' />
+                                    </a>
+                                </div>
+                            }
+                            {post.userId === userId && <DeletePost id={post.ID} />}
+                            <img src={post.image.url} />
+                            <div className='post-info' >
+                                <h1 className='post-title' >{post.title}</h1>
+                                <h1 className='post-author' >{post.sender.name}</h1>
+                                <p className='post-time' >  {post.CreatedAt}</p>
+                            </div>
+                            <p className='post-content' >{post.content}</p>
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     )
 }

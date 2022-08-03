@@ -17,7 +17,7 @@ export const imageSlice = createSlice({
     name: "images",
     initialState: {
         items:[],
-        isLoading: true,
+        isLoading: false,
         isUpdated:false,
     },
 
@@ -51,6 +51,7 @@ export const imageSlice = createSlice({
     },
 })
 
-export const selectImage = (state) => state.users.items;
+export const selectImage = (state) => state.images.items;
+export const imgSlc = (state) => state.images;
 export default imageSlice.reducer;
 

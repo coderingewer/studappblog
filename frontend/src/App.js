@@ -19,6 +19,8 @@ import UpdatePost from './posts/UpdatePost';
 import DeletePost from './posts/DeletePost';
 import UserPosts from "./posts/UserPosts"
 import Post from './posts/Post';
+import Loading from './layouts/Loading';
+import AddPost from './posts/AddPost';
 
 
 function App() {
@@ -33,7 +35,7 @@ function App() {
           <Route path='/explore' element={<ExplorePage />} />
           <Route path='/register' element={<Signup />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/editor' element={<Edit />} />
+          <Route path='/editor' element={<AddPost />} />
           <Route path='/adminpanel' element={<AdminPanel />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/editUser' element={<EditUser />} />
@@ -44,6 +46,8 @@ function App() {
           <Route path='/updatePost/:postId' element={<UpdatePost />} />
           <Route path='/deletepost/:postId' element={<DeletePost />} />
           <Route path='/post/:postId' element={<Post />} />
+          <Route path='/load' element={<Loading />} />
+
         </Routes>
         <ButtomNav />
       </Router>

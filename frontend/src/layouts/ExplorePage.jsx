@@ -10,7 +10,6 @@ function ExplorePage() {
 
       <Dashboard />
       <div className='explore-page'>
-        <Explore />
         <ChoiceEditor />
       </div>
     </div>

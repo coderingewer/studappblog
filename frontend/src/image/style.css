@@ -1,0 +1,27 @@
+#file-input{
+    display: none;
+}
+.update-img{
+  width: 100%;
+    display: flex;
+    border-radius: 10px;
+    border: none;
+}
+
+.file-btn{
+    margin-left: 20px;
+    margin-top: 7px;
+    height: 40px;
+    color: rgb(226, 226, 226);
+    border-radius: 10px;
+    background-color: rgb(57, 173, 125);
+    border: none;
+  }
+
+  .file-name{
+    width: 200px;
+    height: 100%;
+    border-radius: 5px;
+    border: none;
+    overflow: auto;
+  }

@@ -24,17 +24,16 @@ function Profile() {
     <div className='profile' >
       {userSlice.isSignOut && <Navigate to="/" replace={true} /> }
       <div className="user-card-body" >
-        <form onSubmit={handleSignOut}>
+        <form className='profile-form' onSubmit={handleSignOut}>
           <button id='sign-out-btn' type='submit'>Çıkış</button>
+          <a className='edit-link' href="/edituser">Düzenle</a>
         </form>
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Salt_Bae.png/220px-Salt_Bae.png" alt="" />
         <div>
           <h1>{user.username}</h1>
           <p>{user.name}</p>
         </div>
-        <h1 id="user-posts-title" >Yazılar</h1>
         <div className='user-posts' >
-          <UserPosts id={1} />
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@ func (p *Post) Save() (*Post, error) {
 
 func (p *Post) FindAllPosts() (*[]Post, error) {
 	posts := []Post{}
-	err := GetDB().Debug().Table("posts").Order("created_at desc").Find(&posts).Error
+	err := GetDB().Debug().Table("posts").Order("created_at desc").Find(&posts).Limit(10).Error
 	if err != nil {
 		return &[]Post{}, err
 	}

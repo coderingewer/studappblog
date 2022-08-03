@@ -8,10 +8,8 @@ import { useParams } from 'react-router';
 function UserPosts(props) {
     const posts = useSelector(selectPost);
     const dispacth = useDispatch();
-    const [indx, setIndx]  = useState(10);
       let {userId} = useParams();
       const id = userId ? userId : props.id
-
 
     useEffect (()=>{
         dispacth(getUserPostsAsync({id:id}));
@@ -21,7 +19,7 @@ function UserPosts(props) {
     return (
         <div >
             {
-                posts.map((post, i)=> i <= indx && (
+                posts.map((post)=>  (
                     <div key={post.ID} className='usr-post-card' >
                     <div className='card-body' >
                         <h1 className='post-title' >{post.title}</h1>
@@ -29,9 +27,7 @@ function UserPosts(props) {
                     </div>
                 </div>
                 ))
-            }
-            <button onClick={()=>setIndx(indx+5)} >Daha fazla</button>
-           
+            }           
         </div>
     )
 }

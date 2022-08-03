@@ -12,7 +12,7 @@ const (
 	port     = 5432
 	user     = "postgres"
 	password = "uyumak"
-	dbname   = "postgres"
+	dbname   = "studappblog"
 )
 
 var db *gorm.DB
