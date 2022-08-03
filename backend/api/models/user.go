@@ -3,7 +3,6 @@ package models
 import (
 	"errors"
 	"fmt"
-	"html"
 	"log"
 	"strings"
 	"time"
@@ -45,9 +44,6 @@ func (u *User) BeforeSAve() error {
 
 func (u *User) Prepare() {
 	u.ID = 0
-	u.Username = html.EscapeString(strings.TrimSpace(u.Username))
-	u.Email = html.EscapeString(strings.TrimSpace(u.Email))
-	u.Name = html.EscapeString(strings.TrimSpace(u.Name))
 	u.CreatedAt = time.Now()
 	u.UpdatedAt = time.Now()
 	u.UserRole = "BLOGGER"

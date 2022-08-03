@@ -191,3 +191,54 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	utils.JSON(w, http.StatusNoContent, "")
 
 }
+
+func UpdateUsermage(w http.ResponseWriter, r *http.Request) {
+	uid, err := auth.ExtractTokenID(r)
+	if err != nil {
+		utils.ERROR(w, http.StatusUnauthorized, errors.New("Yetkisi yok"))
+		return
+	}
+	user := models.User{}
+	userr, err := user.FindByID(uint(uid))
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	if userr.ID != uid {
+		utils.ERROR(w, http.StatusUnauthorized, errors.New("Yetkisi yok"))
+
+		return
+	}
+
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	formFile, _, err := r.FormFile("file")
+	uploadUrl, err := models.NewMediaUpload().FileUpload(models.File{File: formFile})
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	imgid := userr.Image.ID
+
+	img := models.Image{}
+
+	err = models.GetDB().Debug().Table("images").Where("id = ?", imgid).Take(&img).Error
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	imageUpdate := models.Image{}
+	imageUpdate.Prepare()
+	imageUpdate.ID = img.ID
+	imageUpdate.Url = uploadUrl
+	imgUpdated, err := imageUpdate.UpdateImageByID(uint(imgid))
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	utils.JSON(w, http.StatusOK, imgUpdated)
+
+}

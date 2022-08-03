@@ -20,17 +20,17 @@ function Post() {
     return (
         <div className='post' >
             <div className='post-body' >
+                
+                    <div className='card-more'>
+                        <a className='link' >
+                            <CgMoreVertical className='editbtn' />
+                        </a>
+                    </div>
+                
+            <DeletePost />
                 {
                     posts.map((post) => (
                         <div key={post.ID} >
-                            {post.sender.ID === userId &&
-                                <div className='card-more'>
-                                    <a className='link' href={"/updatepost/" + post.ID}>
-                                        <CgMoreVertical className='editbtn' />
-                                    </a>
-                                </div>
-                            }
-                            {post.userId === userId && <DeletePost id={post.ID} />}
                             <img src={post.image.url} />
                             <div className='post-info' >
                                 <h1 className='post-title' >{post.title}</h1>

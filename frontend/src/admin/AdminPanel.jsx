@@ -4,15 +4,15 @@ import Edit from '../posts/Edit'
 import { useSelector } from 'react-redux'
 import { selectPost } from '../redux/post/postSlice'
 import UploadPostImg from '../posts/UploadPostImg'
+import Profile from '../User/Profile'
 
 
 function AdminPanel() {
     const postslc = useSelector(state => state.posts)
     return (
         <div>
-            <div>{postslc.posted ? <UploadPostImg /> : <Edit />}
-
-            </div>
+          <Profile/>
+           
         </div>
     )
 }

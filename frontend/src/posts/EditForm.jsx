@@ -9,6 +9,7 @@ import './style.css'
 import UploadPostImg from "./UploadPostImg";
 import validationSchema from "./Validations";
 import Loading from "../layouts/Loading"
+import UpdatePosImg from "../image/UpdatePosImg";
 
 function EditForm(props) {
 
@@ -35,17 +36,14 @@ function EditForm(props) {
             content: values.content,
         }
         ))
-    }
-    useEffect( () => {
-         dispacth(getPostAsync({ postId: postId }))
-    },[dispacth])    
+    }  
     return (
         <div>
             <div className='edit-form'>
                 <form onSubmit={handleSubmit} >
                     <div>
                     </div>
-                    <UploadPostImg id={post.image.ID} btntext="Fotoğrafı değiştir" />
+                    <UpdatePosImg />
                     {imgSlc.isLoading && <Loading />}
                     <input
                         placeholder="Başlık"

@@ -3,8 +3,6 @@ package models
 import (
 	"errors"
 	"fmt"
-	"html"
-	"strings"
 
 	"github.com/jinzhu/gorm"
 )
@@ -17,16 +15,14 @@ type Post struct {
 	UserID  uint      `gorm:"not null" json:"userId"`
 	PhotoID uint      `json:"photoId"`
 	Image   Image     `json:"image"`
-	Like    int       `json:"like"`
+	Likes   []Like    `json:"likes"`
+	Views   []View    `json:"views"`
 	PosTags []PostTag `gorm:"many2many:post_tags" json:"post_tags"`
 }
 
 func (p *Post) Prepare() {
 	p.ID = 0
-	p.Like = 0
 	p.Sender = User{}
-	p.Title = html.EscapeString(strings.TrimSpace(p.Title))
-	p.Content = html.EscapeString(strings.TrimSpace(p.Content))
 }
 
 func (p *Post) Save() (*Post, error) {
@@ -66,7 +62,10 @@ func (p *Post) FindAllPosts() (*[]Post, error) {
 	return &posts, nil
 }
 
-func (p *Post) FindByID(pid uint) (*Post, error) {
+func (post *Post) FindByID(pid uint) (*Post, error) {
+
+	p := Post{}
+
 	err := GetDB().Debug().Table("posts").Where("id = ?", pid).Take(&p).Error
 	if err != nil {
 		return &Post{}, err
@@ -82,7 +81,7 @@ func (p *Post) FindByID(pid uint) (*Post, error) {
 	if err != nil {
 		return &Post{}, err
 	}
-	return p, nil
+	return &p, nil
 }
 
 func (p *Post) UpdatePost(pid uint) (*Post, error) {

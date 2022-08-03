@@ -23,6 +23,15 @@ export const updatePostsAsync = createAsyncThunk("posts/updatePostsAsync", async
     })
     return res.data;
 })
+export const updatePostImgsAsync = createAsyncThunk("posts/updatePostImgsAsync", async (data) => {
+    const res = await axios.post("http://localhost:8000/api/posts/uploadimg/"+ data.id, data.data, {
+        headers: {
+            'Authorization': `token ${localStorage.getItem("token")}`
+        }
+    })
+    return res.data;
+})
+
 
 export const getUserPostsAsync = createAsyncThunk("posts/getUserPostsAsync", async (data) => {
     const res = await axios.get("http://localhost:8000/api/posts/getByUserId/" + data.id)
@@ -86,6 +95,12 @@ export const postSlice = createSlice({
         },
         [deletePostsAsync.fulfilled]: (state, action)=>{
             state.deleted = true
+        },
+        [updatePostImgsAsync.rejected]: (state, action)=>{
+            console.log(action.error)
+            console.log(action.payload.data)
+
+
         }
     }
 })

@@ -30,7 +30,7 @@ func init() {
 
 	db = conn
 	db.Debug().AutoMigrate(User{}, Post{},
-		Image{}, Tag{}, PostTag{})
+		Image{}, Tag{}, PostTag{}, Like{}, View{})
 
 	fmt.Println("DB Successfully connected!")
 

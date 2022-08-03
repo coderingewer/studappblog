@@ -39,7 +39,6 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	post.PhotoID = uint(img.ID)
-
 	post.UserID = uint(uid)
 	postCreated, err := post.Save()
 	if err != nil {
@@ -186,38 +185,111 @@ func GetPostsByUserID(w http.ResponseWriter, r *http.Request) {
 	utils.JSON(w, http.StatusOK, posts)
 }
 
-func UploadPostImg(w http.ResponseWriter, r *http.Request) {
-
-	img := models.Image{}
-	formFile, _, err := r.FormFile("file")
+func UpdatePostImage(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	pid, err := strconv.ParseUint(vars["postId"], 10, 64)
+	if err != nil {
+		utils.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+	post := models.Post{}
+	updatePost, err := post.FindByID(uint(pid))
 	if err != nil {
 		utils.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}
+	uid, err := auth.ExtractTokenID(r)
+	if err != nil {
+		utils.ERROR(w, http.StatusUnauthorized, errors.New("Yetkisi yok"))
+		return
+	}
+	if updatePost.UserID != uid {
+		utils.ERROR(w, http.StatusUnauthorized, errors.New("Yetkisi yok"))
+
+		return
+	}
+
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	formFile, _, err := r.FormFile("file")
 	uploadUrl, err := models.NewMediaUpload().FileUpload(models.File{File: formFile})
 	if err != nil {
 		utils.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}
-	img.Url = uploadUrl
-	image, err := img.SaveImage()
+	imgid := updatePost.Image.ID
+
+	img := models.Image{}
+
+	err = models.GetDB().Debug().Table("images").Where("id = ?", imgid).Take(&img).Error
 	if err != nil {
 		utils.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}
+	imageUpdate := models.Image{}
+
+	imageUpdate.Prepare()
+	imageUpdate.ID = img.ID
+	imageUpdate.Url = uploadUrl
+
+	imgUpdated, err := imageUpdate.UpdateImageByID(uint(imgid))
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	utils.JSON(w, http.StatusOK, imgUpdated)
+
+}
+
+func LikePost(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	post := models.Post{}
 	pid, err := strconv.ParseUint(vars["id"], 10, 64)
 	if err != nil {
-		utils.ERROR(w, http.StatusUnprocessableEntity, err)
+		utils.ERROR(w, http.StatusBadRequest, err)
 		return
 	}
-	post.ID = uint(pid)
-	post.PhotoID = uint(image.ID)
-	pst, err := post.UpdatePostImage(uint(pid))
+	like := models.Like{}
+	like.PostID = uint(pid)
+	err = like.LikePOst(uint(pid))
 	if err != nil {
 		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
 	}
+	utils.JSON(w, http.StatusOK, "")
+}
 
-	utils.JSON(w, http.StatusOK, pst)
+func ViewPost(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	pid, err := strconv.ParseUint(vars["id"], 10, 64)
+	if err != nil {
+		utils.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+	view := models.View{}
+	view.PostID = uint(pid)
+	err = view.ViewPost(uint(pid))
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	utils.JSON(w, http.StatusOK, "")
+}
+
+func UnLikePost(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	pid, err := strconv.ParseUint(vars["id"], 10, 64)
+	if err != nil {
+		utils.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+	like := models.Like{}
+	err = like.UnlikePost(uint(pid))
+	if err != nil {
+		utils.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	utils.JSON(w, http.StatusOK, "")
 }
