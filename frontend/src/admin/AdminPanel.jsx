@@ -1,20 +1,25 @@
 import React from 'react'
 import "./style.css"
-import Edit from '../posts/Edit'
 import { useSelector } from 'react-redux'
-import { selectPost } from '../redux/post/postSlice'
-import UploadPostImg from '../posts/UploadPostImg'
-import Profile from '../User/Profile'
+import UserPosts from '../posts/UserPosts'
+import { Container } from 'react-bootstrap'
+import UProfile from './Profile'
 
 
 function AdminPanel() {
-    const postslc = useSelector(state => state.posts)
-    return (
-        <div>
-          <Profile/>
-           
+  const user = useSelector(state => state.users.CurrentUser)
+  console.log(user)
+  return (
+    <Container>
+        <div className='my-profie'>
+          <UProfile />
         </div>
-    )
+        <div className='my-posts' >
+          <h1 className='my-posts-title' >Gönderilerim</h1>
+          <UserPosts id={user.ID} />
+        </div>
+    </Container>
+  )
 }
 
 export default AdminPanel

@@ -1,44 +1,35 @@
 import React, { useEffect } from 'react'
-import { getPostsAsync, selectPost } from '../redux/post/postSlice';
+import { getPostsAsync, selectPost, viewPostAsync } from '../redux/post/postSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import './style.css'
 import { useState } from 'react';
-import DeletePost from './DeletePost';
-import { Navigate, useParams } from 'react-router';
 import AdSense from 'react-adsense';
-import { Form } from 'react-bootstrap';
-import { CgMoreVertical } from 'react-icons/cg';
+import { useMemo } from 'react';
 
 function PostList() {
-    const posts = useSelector(selectPost);
+    const posts =  useSelector(selectPost);
+    const filtered = useSelector(state=>state.posts.filtered)
+    const currentPosts = filtered.length !=0 ? filtered : posts
     const dispacth = useDispatch();
-    const postAction = useSelector((state) => state.posts);
-
     const currentUser = useSelector((state) => state.users.CurrentUser);
-    const userId = currentUser ? currentUser.ID : " ";
-    const [indx, setIndx] = useState(4);
-    const { postId } = useParams()
-    const [filterText, setFilterText] = useState("");
+    const userId = currentUser.ID
 
-    const filtered = posts.filter((item) => {
-        item.title
-            .toLowerCase()
-            .includes(filterText.toLowerCase())
-    });
 
-    console.log(filtered)
     useEffect(() => {
         dispacth(getPostsAsync());
     }, [dispacth])
-    console.log(posts)
+    
+    const viewPost = async (id)=>{
+        await dispacth(viewPostAsync(id))
+    }
     return (
         <div className='post-list' >
             {
-                posts.map((post, i) =>  (
-                    <div key={post.ID} className='post-card' >
+                currentPosts.map((post, i) =>  (
+                    <div  key={post.ID} className='post-card' >
                         <div className='colorful-div'  ></div>
                         <div className='card-body' >
-                            <a className='link' href={"/post/" + post.ID} >
+                            <a  onClick={()=> userId !== post.sender.ID && viewPost(post.ID)}  className='link' href={"/post/" + post.ID} >
                                 <h1 className='post-title' >{post.title}</h1>
                             </a>
                             <p className='post-author' >{post.sender.name}</p>

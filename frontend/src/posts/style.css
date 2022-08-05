@@ -1,16 +1,15 @@
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 995px) {
     .post-img {
         width: 300px;
         height: 100%;
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
-
     }
 
-    .colorful-div{
+    .colorful-div {
         width: 1.5%;
         background-image: linear-gradient(to bottom, #495C83, #7A86B6, #A8A4CE, #C8B6E2);
-     }
+    }
 
     .post-title {
         font-size: 28px;
@@ -22,38 +21,45 @@
         overflow: hidden;
         width: 500px;
         height: 75px;
+        word-break: keep-all;
     }
 
-  .post{
-    margin-left: 10%;
-    margin-bottom: 200px;
-    margin-top: 100px;
-    margin-right: 10%;
-    width: 70%;
-    border-radius: 10px;
-    border: solid rgb(211, 211, 211) 2px;
-  }
+    .post {
+        margin-left: 10%;
+        margin-bottom: 200px;
+        margin-top: 100px;
+        margin-right: 10%;
+        width: 70%;
+        word-break: keep-all;
+        border-radius: 10px;
+        border: solid rgb(211, 211, 211) 2px;
+    }
 
-  .post-body img {
-    width: 50%;
-    height: 50%;
-   margin-left: 10%;
-   margin-top: 100px;
-   border-radius: 10px;
-  }
+    .post-body img {
+        width: 50%;
+        height: 50%;
+        word-break: keep-all;
+        margin-left: 10%;
+        margin-top: 100px;
+        border-radius: 10px;
+    }
 
-  .post-info{
-    width: 100%;
-    height: 200px;
-    margin-left: 10%;
-  }
+    .post-info {
+        width: 100%;
+        height: 200px;
+        margin-left: 10%;
+        word-break: keep-all;
+    }
 
-  .post-content {
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-bottom: 100px;
-    
-  }
+    .post-content {
+        margin-left: 100px;
+        word-break: keep-all;
+        margin-right: 100px;
+        padding-left: 70px;
+
+        margin-bottom: 100px;
+
+    }
 
     .post-card {
         margin: auto;
@@ -85,6 +91,7 @@
         font-weight: 500;
         text-align: left;
         padding-left: 10px;
+        word-break: keep-all;
     }
 
     .post-time {
@@ -93,16 +100,19 @@
         text-align: left;
         color: coral;
         padding-left: 10px;
+        word-break: keep-all;
+
     }
 
     .card-text {
         overflow: hidden;
         width: 500px;
         height: 100px;
+        word-break: keep-all;
     }
 
     .card-text p {
-
+        word-break: keep-all;
         font-weight: 300;
         text-align: left;
         padding-bottom: 10px;
@@ -117,7 +127,7 @@
     }
 
     .post-list {
-        margin-top: 100px;
+        margin-top: 500px;
         margin-left: 100px;
         width: 800px;
         height: 100%;
@@ -127,24 +137,28 @@
         align-items: center;
     }
 
+    .form-inputs {
+        margin-left: 10%;
+    }
+
     .edit-form {
         margin-left: 30%;
         margin-right: 30%;
         width: 70%;
-        margin-top: -50px;
-        margin-bottom: 100px;
+        margin-top: 100px;
         height: 100%;
+        overflow: hidden;
         display: flex;
         border-radius: 10px;
         width: 600px;
         background-color: azure;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
+
     }
 
 }
 
-@media only screen and (max-width: 1099px) {
+@media only screen and (max-width: 994px) {
 
     .post-img {
         width: 200px;
@@ -155,14 +169,16 @@
 
 
     .post-title {
-        width: 500px;
-        font-size: 18px;
-        font-weight: 600;
+        width: 100%;
+        height: 75px;
+        font-size: 14px;
+        font-weight: 500;
         text-align: left;
         padding-top: 10px;
         padding-left: 10px;
         padding-top: 10px;
         overflow: hidden;
+        word-break: keep-all;
     }
 
     .post-card {
@@ -171,22 +187,25 @@
         height: 200px;
         border-radius: 10px;
         margin-bottom: 10px;
+        word-break: keep-all;
         display: flex;
         overflow: hidden;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 4px 8px 0 rgba(5, 5, 5, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     }
-    .colorful-div{
+
+    .colorful-div {
         width: 1.5%;
         background-image: linear-gradient(to bottom, #495C83, #7A86B6, #A8A4CE, #C8B6E2);
-     }
+    }
 
     .post-author {
         margin: auto;
-        font-size: 18px;
+        font-size: 12px;
         font-weight: 500;
         text-align: left;
         padding-left: 10px;
+        word-break: keep-all;
     }
 
     .popular-list {
@@ -194,9 +213,10 @@
     }
 
     .post-time {
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 400;
         text-align: left;
+        word-break: keep-all;
         color: coral;
         padding-left: 10px;
     }
@@ -207,6 +227,7 @@
         font-weight: 300;
         text-align: left;
         padding-bottom: 10px;
+        word-break: keep-all;
         padding-left: 10px;
         overflow: hidden;
     }
@@ -215,17 +236,19 @@
         padding-left: 10px;
         padding-top: 10px;
         width: 50%;
+        word-break: keep-all;
         margin: auto;
     }
 
     .post-list {
-        margin-top: 50px;
+        margin-top: 500px;
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        word-break: keep-all;
         padding-bottom: 100px;
 
     }
@@ -236,47 +259,54 @@
     }
 
 
-  .post{
-    margin-bottom: 200px;
-    margin-top: 100px;
-    width: 100%;
-    border-radius: 10px;
-    border: solid rgb(211, 211, 211) 2px;
-      }
+    .post {
+        margin-bottom: 200px;
+        margin-top: 100px;
+        width: 100%;
+        border-radius: 10px;
+        border: solid rgb(211, 211, 211) 2px;
+        word-break: keep-all;
+    }
 
-  .post-body img {
-    width: 40%;
-    height: 40%;
-   margin-top: 100px;
-   border-radius: 10px;
-   margin-left: 30%;
-  }
+    .post-body img {
+        width: 40%;
+        height: 40%;
+        margin-top: 100px;
+        border-radius: 10px;
+        word-break: keep-all;
+        margin-left: 30%;
+    }
 
-  .post-info{
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-    height: 100px;
-  }
+    .post-info {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        height: 100px;
+        word-break: keep-all;
+    }
 
-  .post-content {
-    margin-bottom: 100px;
-    width: 90%;
-    margin: 5%;
-  }
+    .post-content {
+        margin-bottom: 100px;
+        width: 90%;
+        margin: 5%;
+        word-break: keep-all;
+    }
 
-  .edit-form {
-    margin-left: 10%;
-    margin-top: -50px;
-    margin-bottom: 100px;
-    height: 100%;
-    display: flex;
-    border-radius: 10px;
-    width: 600px;
-    background-color: azure;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    .edit-form {
+        margin-top: 100px;
+        display: flex;
+        overflow: hidden;
+        border-radius: 10px;
+        width: 100%;
+        background-color: azure;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-}
+    }
+
+    .form-inputs {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
 
 }
 
@@ -347,9 +377,9 @@
 
 .edit-form input {
     margin: 20px;
-    height: 50px;
+    height: 40px;
     width: 100%;
-    border: solid rgb(145, 145, 145) 3px;  
+    border: solid rgb(145, 145, 145) 3px;
     border-radius: 10px;
     text-align: center;
     border: none;
@@ -378,46 +408,102 @@
     border: none;
 }
 
-.usr-post-card {
-    margin: auto;
-    width: 100%;
-    height: 100px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    border: solid rgb(211, 211, 211) 2px;
-}
 
 .link {
     text-decoration: none;
     color: black;
-  }
-  .link:hover {
-    text-decoration: none;
-    color : #495C83;
-  }
+}
 
-  .error{
+.link:hover {
+    text-decoration: none;
+    color: #495C83;
+}
+
+.error {
     color: red;
     text-align: center;
- }
- .editbtn{
+}
+
+.editbtn {
     margin-top: 20px;
     height: 50px;
     width: 50px;
     margin-bottom: 10px;
- }
+}
 
- .card-more{
-    width: 70px;
- }
- .upload-img{
+.dropbtn {
+    color: rgb(0, 0, 0);
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    padding: 20px;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    height: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+.upload-img {
     margin-left: -90%;
     margin-top: 700px;
     width: 100%;
     margin-bottom: 20px;
- }
+}
 
+.user-post {
+    width: 90%;
+    margin-left: 40px;
+}
 
-
-
+.deletebtn{
+    color: whitesmoke;
+    background-image: linear-gradient(to left, #834949, #fc3c3c, #fd5e5e, #ffc0c0);
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    width: 60px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.editlink {
+    margin-top: 20px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 10px;
+    height: 20px;
+    width: 100px;
+    margin-left: 10px;
+    text-align: center;
+    background-image: linear-gradient(to left, #495C83, #7A86B6, #A8A4CE, #C8B6E2);
+    font-weight: 600;
+}

@@ -19,11 +19,21 @@ export const getUserAsync = createAsyncThunk("users/getUserAsnyc/", async (id) =
     return res.data;
 })
 
-export const editUserAsync = createAsyncThunk("users/editUserAsnyc/", async ( data) => {
-    const res = await axios.post("http://localhost:8000/api/users/update/" + data.id, data ,{
+export const getCurrentUserAsync = createAsyncThunk("users/GetCurrentUserAsync/", async () => {
+    const res = await axios.get("http://localhost:8000/api/users/getByToken/", {
         headers: {
             'Authorization': `token ${localStorage.getItem("token")}`
-          }})
+        }
+    })
+    return res.data;
+})
+
+export const editUserAsync = createAsyncThunk("users/editUserAsnyc/", async (data) => {
+    const res = await axios.post("http://localhost:8000/api/users/update/" + data.id, data, {
+        headers: {
+            'Authorization': `token ${localStorage.getItem("token")}`
+        }
+    })
     return res.data;
 })
 
@@ -31,15 +41,16 @@ export const editUserAsync = createAsyncThunk("users/editUserAsnyc/", async ( da
 export const userSlice = createSlice({
     name: "users",
     initialState: {
-        items:[],
+        items: [],
+        current:[],
         CurrentUser: JSON.parse(localStorage.getItem("user_data")),
         isLoggined: false,
         isLoading: true,
         autharized: false,
-        regiterError : null,
-        isUpdated:false,
-        isRegistered : false,
-        isSignOut : false,
+        regiterError: null,
+        isUpdated: false,
+        isRegistered: false,
+        isSignOut: false,
     },
 
     reducers: {
@@ -47,7 +58,7 @@ export const userSlice = createSlice({
             localStorage.removeItem("token");
             localStorage.removeItem("logined");
             localStorage.removeItem("user_data");
-           state.isSignOut = true;
+            state.isSignOut = true;
         }
     },
 
@@ -73,19 +84,25 @@ export const userSlice = createSlice({
             state.isLoading = false;
             state.autharized = true;
             localStorage.setItem("logined", true);
-            localStorage.setItem("token",action.payload.token)
+            localStorage.setItem("token", action.payload.token)
             localStorage.setItem('user_data', JSON.stringify(action.payload));
         },
-        
+
         [loginAsync.rejected]: (state, action) => {
             state.isLoggined = false;
             state.isLoading = false;
         },
-        [editUserAsync.fulfilled]:(state, action)=>{
+        [editUserAsync.fulfilled]: (state, action) => {
             state.isUpdated = true;
-            localStorage.setItem("user_data", JSON.stringify(action.payload) )
+            localStorage.setItem("user_data", JSON.stringify(action.payload))
         },
-        [getUserAsync.fulfilled]:(state, action) =>{
+        [getUserAsync.fulfilled]: (state, action) => {
+            state.current = []
+            state.current.push(action.payload)
+            
+        },
+
+        [getCurrentUserAsync.fulfilled]: (state, action) => {
             localStorage.setItem('user_data', JSON.stringify(action.payload));
         },
     },

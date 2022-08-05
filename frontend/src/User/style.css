@@ -1,4 +1,4 @@
-.signup-form{
+.signup-form {
     max-width: 500px;
     margin: 0 auto;
     border-radius: 10px;
@@ -6,16 +6,17 @@
     background-color: azure;
     padding: 20px;
     margin-top: -100px;
-    box-shadow: 0 0 20px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.24);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 
-.user-card-body{
+.user-card-body {
     border-radius: 10px;
     height: 200px;
-    width: 100% ;  
+    width: 100%;
 
 }
+
 .user-card-body img {
     border-radius: 100%;
     width: 100px;
@@ -24,7 +25,7 @@
     height: 100px;
 }
 
-.user-posts{
+.user-posts {
     width: 80%;
     height: 500px;
     margin-left: 10%;
@@ -32,15 +33,16 @@
     margin-top: -70px;
 }
 
-#user-posts-title{
+#user-posts-title {
     height: 50px;
     text-align: center;
     font-size: 40px;
     font-weight: 500;
 }
-#sign-out-btn{
+
+#sign-out-btn {
     color: whitesmoke;
-    background-color: rgb(209, 186, 186);
+    background-image: linear-gradient(to left, #834949, #fc3c3c, #fd5e5e, #ffc0c0);
     font-weight: 600;
     border-radius: 10px;
     margin-top: 20px;
@@ -48,6 +50,8 @@
     border: none;
     width: 60px;
 }
+
+
 .user-card-body h1 {
     margin-top: 10px;
     margin-bottom: 100px;
@@ -56,23 +60,27 @@
     height: 100px;
     text-align: center;
 }
+
 .user-card-body p {
     width: 90%;
     margin-top: -170px;
     height: 100px;
     text-align: center;
 }
-.signout-form{
+
+.signout-form {
     background-color: #ccc;
     height: 50px;
     width: 60px;
     margin-left: 90%;
 }
-.signout-form button{
+
+.signout-form button {
     height: 40px;
     font-size: small;
 }
-.signup-inputs{
+
+.signup-inputs {
     margin-top: 20px;
     background-color: aliceblue;
     display: flex;
@@ -80,46 +88,41 @@
     padding-bottom: 100%;
 }
 
-.signup-inputs input{
-   margin-top: 30px;
-   width: 400px;
-   max-height: 400px;
-   height: 35px;
-   max-height: 40px;
-   margin-left: 30px;
-   text-align: center;
-   border: 2px solid #ccc;
-   border-radius: 10px;
+.signup-inputs input {
+    margin-top: 30px;
+    width: 400px;
+    max-height: 400px;
+    height: 35px;
+    max-height: 40px;
+    margin-left: 30px;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
 }
 
 
 
-.signup-inputs button{
+.signup-inputs button {
     margin-top: 20px;
     width: 40%;
     margin-left: 0px;
     border-radius: 10px;
     color: rgb(255, 255, 255);
-    background-color: rgb(52, 243, 148);
- }
- .error{
+    background-image: linear-gradient(to left, #495C83, #7A86B6, #A8A4CE, #C8B6E2);
+}
+
+.error {
     color: red;
     text-align: center;
- }
+}
 
- .profile{
-    margin-top: 50px;
-    width: 300px;
-    padding-bottom: 100%;
+.profile {
     display: flex;
-    background-color: rgb(241, 241, 241);
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    position: fixed;
-    margin-bottom: 300px;
- }
+    background-image: linear-gradient(to top, #495C83, #7A86B6, #A8A4CE, #C8B6E2);
+    border-radius: 10px;
+}
 
- .edit-link{
+.edit-link {
     margin-left: -270px;
     margin-top: 20px;
     text-decoration: none;
@@ -129,20 +132,86 @@
     border-radius: 10px;
     height: 30px;
     text-align: center;
-    background-color: rgb(61, 180, 170);
+    background-image: linear-gradient(to left, #495C83, #7A86B6, #A8A4CE, #C8B6E2);
     font-weight: 600;
- }
+}
 
- .edit-link:hover{
-    text-decoration: wavy;
-    font-size: 18px;
-    padding: 5px;
-    color: #ccc;
+@media only screen and (min-width: 995px) {
+    .profile {
+        width: 300px;
+        height: 500px;
+    }
+    .my-posts {
+        margin-left: 40%;
+        margin-top: 100px;
+        width: 60%;
+      
+    }
+
+}
+
+
+
+@media only screen and (max-width: 995px) {
+    .profile {
+        margin: 10px;
+        width: 420px;
+        height: 300px;
+    }
+
+    .edit-link {
+        margin-left: -350px;
+        margin-top: 20px;
+        height: 30px;
+        text-align: center;
+        background-image: linear-gradient(to left, #495C83, #7A86B6, #A8A4CE, #C8B6E2);
+        font-weight: 600;
+    }
+
+    .user-card-body img {
+        margin-left: 180px;
+    }
+    .my-profie {
+        margin-left: 5%;
+        margin-top: 200px;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 100px;
+    }
+
+    .my-posts {
+        margin-left: 5%;
+        margin-right: 200px;
+        position: fixed;
+        width: 90%;
+    }
+}
+
+.my-posts-title {
+    width: 98%;
+    margin-top: 50px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-image: linear-gradient(to left, #495C83, #7A86B6, #A8A4CE, #C8B6E2);
+    margin-left: 10px;
     border-radius: 10px;
-    height: 35px;
-    font-weight: 400;
- }
 
- .profile-form{
-    display: flex;
- }
+}
+
+.my-profie {
+    width: 30%;
+    position: fixed
+}
+
+
+
+
+.my-posts {
+    overflow: scroll;
+    height: 900px;
+    text-align: center;
+    border: #A8A4CE solid 4px;
+    border-style: groove;
+    border-radius: 10px;
+}

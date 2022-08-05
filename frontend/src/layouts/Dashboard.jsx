@@ -10,7 +10,6 @@ function Dashboard(props) {
         <h1 className='slogan' >{props.text}</h1>
         <p className='abstract' >{props.abstract}</p>
       <Navi />
-      <ButtomNav />
     </div>
   )
 }

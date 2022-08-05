@@ -57,7 +57,6 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 			}*/
 	userCreated, err := user.SaveUser()
 	responseUsr := models.ResponseUser{}
-
 	responseUsr.Email = userCreated.Email
 	responseUsr.Name = userCreated.Name
 	responseUsr.ID = userCreated.ID
@@ -109,6 +108,21 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		utils.ERROR(w, http.StatusBadRequest, err)
 		return
+	}
+	user := models.User{}
+	userGotten, err := user.FindByID(uint(uid))
+	if err != nil {
+		utils.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+	utils.JSON(w, http.StatusOK, userGotten)
+}
+
+func GetUserByToken(w http.ResponseWriter, r *http.Request) {
+	uid, err := auth.ExtractTokenID(r)
+	if err != nil {
+		utils.ERROR(w, http.StatusUnauthorized, errors.New("Yetkilendirilmemiş"))
+		fmt.Println("hao2")
 	}
 	user := models.User{}
 	userGotten, err := user.FindByID(uint(uid))
@@ -240,5 +254,4 @@ func UpdateUsermage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	utils.JSON(w, http.StatusOK, imgUpdated)
-
 }

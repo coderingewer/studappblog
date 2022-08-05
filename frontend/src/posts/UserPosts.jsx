@@ -1,28 +1,38 @@
 import React, { useEffect } from 'react'
-import { getPostsAsync, getUserPostsAsync, selectPost } from '../redux/post/postSlice';
+import { getPostsAsync, getUserPostsAsync, selectPost, viewPostAsync } from '../redux/post/postSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import './style.css'
 import { useState } from 'react';
 import { useParams } from 'react-router';
+import PostNotFound from '../layouts/PostNotFoun';
 
 function UserPosts(props) {
-    const posts = useSelector(selectPost);
+    const posts =  useSelector(selectPost);
+    const notfound = useSelector(state=>state.posts.notFound)
+    const filtered = useSelector(state=>state.posts.filtered)
+    const currentPosts = filtered.length !== 0 && notfound ? filtered : posts
     const dispacth = useDispatch();
       let {userId} = useParams();
       const id = userId ? userId : props.id
 
     useEffect (()=>{
         dispacth(getUserPostsAsync({id:id}));
-        console.log(props)
     },[dispacth])
+    const viewPost = async (id)=>{
+        await dispacth(viewPostAsync(id))
+    }
 
     return (
-        <div >
+        <div className='user-post' >
+                        {notfound && <PostNotFound/>}
             {
-                posts.map((post)=>  (
-                    <div key={post.ID} className='usr-post-card' >
+                currentPosts.map((post)=>  (
+                    <div key={post.ID} className='post-card' >
+                    <div className='colorful-div'  ></div>
                     <div className='card-body' >
-                        <h1 className='post-title' >{post.title}</h1>
+                    <a  onClick={()=> userId !== post.sender.ID && viewPost(post.ID)}  className='link' href={"/post/" + post.ID} >
+                                <h1 className='post-title' >{post.title}</h1>
+                            </a>
                         <p className='post-time' >{post.UpdatedAt}</p>
                     </div>
                 </div>

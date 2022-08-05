@@ -1,15 +1,17 @@
 @media only screen and (min-width: 1100px) {
   .studapp-blog {
-    margin-top: 60px;
     height: 400px;
     width: 100%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: -330px;
     background-color: 006A71;
     /* For browsers that do not support gradients */
     background-image: linear-gradient(to right top, #6667ab, #3d86ca, #00a4da, #00c0dc, #00d9d2, #17e6c4, #4cf2af, #7cfb94, #92fe7c, #aaff61, #c6ff40, #e3ff00);
     display: flex;
   }
-  
-  .explore-items{
+
+  .explore-items {
     display: flow-root;
     flex-direction: row;
     flex-wrap: wrap;
@@ -27,18 +29,19 @@
     margin-left: 850px;
     padding-top: 100px;
   }
-  
+
   .explore-card {
     width: 30%;
     margin: 20px;
     height: 30px;
     border-radius: 10px;
   }
+
   .explore-card:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
-  
-  
+
+
   .explore-card h1 {
     font-size: 18px;
     text-align: left;
@@ -46,7 +49,7 @@
     padding: 5px;
     margin-left: 10px;
   }
-  
+
   .explore-card p {
     margin-top: -35px;
     font-size: 16px;
@@ -54,7 +57,7 @@
     text-align: right;
     margin-right: 10px;
   }
-  
+
 
   .slogan {
     display: block;
@@ -88,9 +91,11 @@
 
 @media only screen and (max-width: 1099px) {
   .studapp-blog {
-    margin-top: 60px;
     height: 200px;
     width: 100%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: -100px;
     background-color: 006A71;
     background-image: linear-gradient(to right top, #6667ab, #3d86ca, #00a4da, #00c0dc, #00d9d2, #17e6c4, #4cf2af, #7cfb94, #92fe7c, #aaff61, #c6ff40, #e3ff00);
     display: flex;
@@ -108,13 +113,14 @@
     color: rgb(0, 0, 0);
     font-family: "Times New Roman", Times, serif;
   }
-  .abstract{
+
+  .abstract {
     display: none;
     color: #03494e;
   }
- 
 
-  .explore-items{
+
+  .explore-items {
     display: flow-root;
     flex-direction: row;
     flex-wrap: wrap;
@@ -125,7 +131,7 @@
   }
 }
 
-#loading{
+#loading {
   border-radius: 100%;
   opacity: 0.5;
   width: 200px;
@@ -136,20 +142,35 @@
 
 }
 
-#edit-img{
+#edit-img {
   width: 50%;
   height: 50%;
 }
 
-file-btn{
+file-btn {
   width: 20px;
   height: 20px;
 }
 
-.explore-page{
+.explore-page {
   text-align: center;
   margin-top: -50px;
   margin-left: 100px;
   margin-right: 100px;
   height: 100%;
+}
+
+#post-not-found {
+  position: fixed;
+  box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.541), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#post-not-found h1 {
+  font-weight: 200;
+}
+.notfound{
+  margin-left: 41%;
+  margin-top: -400px;
 }

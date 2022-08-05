@@ -11,10 +11,11 @@
 .file-btn{
     margin-left: 20px;
     margin-top: 7px;
-    height: 40px;
-    color: rgb(226, 226, 226);
+    height: 50px;
+    word-wrap: break-word;
+    color: rgb(255, 255, 255);
     border-radius: 10px;
-    background-color: rgb(57, 173, 125);
+    background-color: rgb(105, 221, 173);
     border: none;
   }
 

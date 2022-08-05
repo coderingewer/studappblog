@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router'
+import { Navigate, useParams } from 'react-router'
 import "./style.css"
 import { getPostAsync, selectPost } from '../redux/post/postSlice'
 import { CgMoreVertical } from 'react-icons/cg'
@@ -8,8 +8,9 @@ import DeletePost from './DeletePost'
 
 function Post() {
     const currentUser = useSelector((state) => state.users.CurrentUser);
-    const userId = currentUser.id;
-    const posts = useSelector(state => state.posts.items)
+    const userId = currentUser.ID;
+    const postSlc = useSelector(state=>state.posts)
+    const posts = useSelector(state => state.posts.current)
     const { postId } = useParams()
     const dispact = useDispatch()
     useEffect(() => {
@@ -17,20 +18,22 @@ function Post() {
     }
         , [dispact])
     console.log(posts)
+    console.log(posts)
     return (
         <div className='post' >
             <div className='post-body' >
-                
-                    <div className='card-more'>
-                        <a className='link' >
-                            <CgMoreVertical className='editbtn' />
-                        </a>
-                    </div>
-                
-            <DeletePost />
                 {
                     posts.map((post) => (
                         <div key={post.ID} >
+                            <div className='dropdown'>
+                            <button className="dropbtn"><CgMoreVertical/></button>
+                                <div className='dropdown-content' >
+                                <a  href={"/updatepost/" + post.ID} className='editlink' >
+                                    Düzenle
+                                </a>
+                                <DeletePost />
+                                </div>
+                            </div>
                             <img src={post.image.url} />
                             <div className='post-info' >
                                 <h1 className='post-title' >{post.title}</h1>
@@ -41,6 +44,7 @@ function Post() {
                         </div>
                     ))
                 }
+                {postSlc.deleted && <Navigate to = "/" replace = {true}/>}
             </div>
         </div>
     )

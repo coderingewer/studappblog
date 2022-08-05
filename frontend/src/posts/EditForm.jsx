@@ -6,7 +6,6 @@ import Dashboard from "../layouts/Dashboard";
 import { getPostAsync, updatePostsAsync } from "../redux/post/postSlice";
 import { selectUser } from "../redux/user/userSlice";
 import './style.css'
-import UploadPostImg from "./UploadPostImg";
 import validationSchema from "./Validations";
 import Loading from "../layouts/Loading"
 import UpdatePosImg from "../image/UpdatePosImg";
@@ -36,37 +35,38 @@ function EditForm(props) {
             content: values.content,
         }
         ))
-    }  
+    }
     return (
         <div>
-            <div className='edit-form'>
-                <form onSubmit={handleSubmit} >
-                    <div>
-                    </div>
-                    <UpdatePosImg />
-                    {imgSlc.isLoading && <Loading />}
-                    <input
-                        placeholder="Başlık"
-                        name="title"
-                        value={values.title}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                    {errors.title && touched.title && (
-                        <div className="error">{errors.title}</div>
-                    )}
-                    <textarea
-                        placeholder="İçerik"
-                        name="content"
-                        value={values.content}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                    {errors.content && touched.content && (
-                        <div className="error">{errors.content}</div>
-                    )}
-                    <button id="update-post-submit" disabled={values.content && values.title && errors ? false : true} type='submit' >Kaydet</button>
-                </form>
+            <div className='add-post' >
+                <div className='edit-form'>
+                    <form onSubmit={handleSubmit} >
+                        <UpdatePosImg />
+                        <div className='form-inputs' >
+                            <input
+                                placeholder="Başlık"
+                                name="title"
+                                value={values.title}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            {errors.title && touched.title && (
+                                <div className="error">{errors.title}</div>
+                            )}
+                            <textarea
+                                placeholder="İçerik"
+                                name="content"
+                                value={values.content}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            {errors.content && touched.content && (
+                                <div className="error">{errors.content}</div>
+                            )}
+                        </div>
+                        <button id="update-post-submit" disabled={values.content && values.title && errors ? false : true} type='submit' >Kaydet</button>
+                    </form>
+                </div>
             </div>
         </div>
     )

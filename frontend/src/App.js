@@ -14,18 +14,18 @@ import Profile from './User/Profile';
 import EditUser from "./User/EditUser"
 import UploadImage from './image/UploadImage';
 import UpdateUserAvatar from './User/UpdateUserAvatar';
-import UploadPostImg from './posts/UploadPostImg';
 import UpdatePost from './posts/UpdatePost';
 import DeletePost from './posts/DeletePost';
 import UserPosts from "./posts/UserPosts"
 import Post from './posts/Post';
 import Loading from './layouts/Loading';
 import AddPost from './posts/AddPost';
+import User from './User/User';
 
 
 function App() {
   return (
-    < div  >
+    < div className='App' >
       <Router>
         <Navi />
         <ButtomNav />
@@ -37,11 +37,10 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/editor' element={<AddPost />} />
           <Route path='/adminpanel' element={<AdminPanel />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile/:userId' element={<User />} />
           <Route path='/editUser' element={<EditUser />} />
           <Route path='/uploadImage' element={<UploadImage />} />
           <Route path='/useravatar' element={<UpdateUserAvatar />} />
-          <Route path='/postimg' element={<UploadPostImg />} />
           <Route path='/userPosts/:userId' element={<UserPosts />} />
           <Route path='/updatePost/:postId' element={<UpdatePost />} />
           <Route path='/deletepost/:postId' element={<DeletePost />} />

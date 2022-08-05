@@ -1,6 +1,55 @@
-.admin-bar{
-    background-color: aqua;
-    display: flex;
-    width: 100%;
+@media only screen and (min-width: 995px) {
 
-}   margin-bottom: 100px;
+    .my-posts {
+        margin-left: 40%;
+        margin-top: 100px;
+        width: 60%;
+      
+    }
+}
+
+.my-posts-title {
+    width: 98%;
+    margin-top: 50px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-image: linear-gradient(to left, #495C83, #7A86B6, #A8A4CE, #C8B6E2);
+    margin-left: 10px;
+    border-radius: 10px;
+
+}
+
+.my-profie {
+    width: 30%;
+    position: fixed
+}
+
+
+@media only screen and (max-width: 995px) {
+
+    .my-profie {
+        margin-left: 5%;
+        margin-top: 200px;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 100px;
+    }
+
+    .my-posts {
+        margin-left: 5%;
+        margin-right: 200px;
+        position: fixed;
+        width: 90%;
+    }
+
+}
+
+.my-posts {
+    overflow: scroll;
+    height: 900px;
+    text-align: center;
+    border: #A8A4CE solid 4px;
+    border-style: groove;
+    border-radius: 10px;
+}

@@ -9,7 +9,6 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Editor } from 'react-draft-wysiwyg';
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
-import UploadPostImg from './UploadPostImg';
 import { Navigate } from 'react-router';
 import Dashboard from '../layouts/Dashboard';
 import UpdateImage from '../image/UpdateImage';
@@ -18,7 +17,7 @@ function Edit() {
   const actions = useSelector(state => state.posts)
   const editorState = EditorState.createEmpty();
   const currentUser = useSelector((state) => state.users.CurrentUser);
-  const id =localStorage.getItem("currentPostID");
+  const id = localStorage.getItem("currentPostID");
 
   const userId = currentUser.id;
   const [content, setContent] = useState(editorState);
@@ -43,32 +42,39 @@ function Edit() {
       }
 
     });
-    console.log(id)
 
   return (
     <div className='add-post' >
       <Dashboard text="Gönderi  Oluştur" />
       <div className='edit-form'>
         <form onSubmit={handleSubmit} >
-          <input
-            placeholder="Başlık"
-            name="title"
-            value={values.title}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <textarea
-            placeholder="İçerik"
-            name="content"
-            value={values.content}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <button  id="update-post-submit" disabled={values.content && values.title ? false : true} type='submit' >Paylaş</button>
+          <div className='form-inputs' >
+            <input
+              placeholder="Başlık"
+              name="title"
+              value={values.title}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.title && touched.title && (
+              <div className="error">{errors.title}</div>
+            )}
+            <textarea
+              placeholder="İçerik"
+              name="content"
+              value={values.content}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.content && touched.content && (
+              <div className="error">{errors.content}</div>
+            )}
+          </div>
+          <button id="update-post-submit" disabled={values.content && values.title ? false : true} type='submit' >Paylaş</button>
         </form>
-      <div className='upload-img' >
-          {actions.posted && <UpdateImage btntext="Fotoğraf Yükle" id = {id}/>}
-      </div>
+        <div className='upload-img' >
+          {actions.posted && <UpdateImage btntext="Fotoğraf Yükle" id={id} />}
+        </div>
       </div>
     </div>
   )

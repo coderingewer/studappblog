@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router'
 import { deletePostsAsync } from '../redux/post/postSlice'
+import "./style.css"
 
 
 function DeletePost(props) {
@@ -16,9 +17,8 @@ function DeletePost(props) {
 
   return (
     <div>
-        <br /><br /><br /><br /><br /><br />
         <form onSubmit={handleDelete} >
-        <button type="submit" >Sil</button>
+        <button className='deletebtn' type="submit" >Sil</button>
         </form>
     </div>
   )

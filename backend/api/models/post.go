@@ -57,6 +57,10 @@ func (p *Post) FindAllPosts() (*[]Post, error) {
 			if err != nil {
 				return &[]Post{}, err
 			}
+			err = GetDB().Debug().Table("views").Where("post_id=?", &p.ID).Find(&p.Views).Error
+			if err != nil {
+				return &[]Post{}, err
+			}
 		}
 	}
 	return &posts, nil
@@ -78,6 +82,10 @@ func (post *Post) FindByID(pid uint) (*Post, error) {
 		return &Post{}, err
 	}
 	err = GetDB().Debug().Table("images").Where("id=?", &p.PhotoID).Take(&p.Image).Error
+	if err != nil {
+		return &Post{}, err
+	}
+	err = GetDB().Debug().Table("views").Where("post_id=?", &p.ID).Find(&p.Views).Error
 	if err != nil {
 		return &Post{}, err
 	}
